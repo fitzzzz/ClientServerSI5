@@ -108,7 +108,7 @@
     }
 
     td.ita {
-        color: peru;
+        color: rgb(66, 49, 31);
     }
 
     td.jap {
