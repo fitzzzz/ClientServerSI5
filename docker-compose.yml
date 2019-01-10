@@ -1,0 +1,32 @@
+version: "3.5"
+
+services:
+
+  order:
+    build:
+      context: order
+      dockerfile: Dockerfile
+    container_name: order
+    environment:
+    - NODE_ENV=production
+    depends_on:
+    - db
+    expose:
+    - "8003"
+    ports:
+    - "8003:8003"
+
+  db:
+    image: mongo:latest
+    container_name: db
+    environment:
+    - MONGO_DATA_DIR=/data/db
+    - MONGO_LOG_DIR=/dev/null
+    volumes:
+    - ./data:/data/db
+    expose:
+    - "27017"
+    ports:
+    - "27017:27017"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
