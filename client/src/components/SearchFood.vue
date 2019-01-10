@@ -1,22 +1,27 @@
 <template>
     <div id="search-food-component">
         <b-container>
+            <!--<b-row>-->
+                <!--<b-col cols="8" offset="2">-->
+                    <!--<b-form-input v-model="searchValue" type="text" placeholder="Search Food"></b-form-input>                -->
+                <!--</b-col>-->
+            <!--</b-row>-->
+            <!--<div v-if="searchValue != ''">    -->
+                <!--<b-row v-for="s in searchResult" :key="s.name">-->
+                    <!--<b-col cols="8" offset="2">-->
+                        <!--<div class="search-result">-->
+                            <!--<div class="search-result-content">-->
+                                <!--{{s.name}}-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</b-col>-->
+                <!--</b-row>-->
+            <!--</div>-->
             <b-row>
                 <b-col cols="8" offset="2">
-                    <b-form-input v-model="searchValue" type="text" placeholder="Search Food"></b-form-input>                
+                    <v-select taggable placeholder="Search food" :options=database></v-select>
                 </b-col>
             </b-row>
-            <div v-if="searchValue != ''">    
-                <b-row v-for="s in searchResult" :key="s.name">
-                    <b-col cols="8" offset="2">
-                        <div class="search-result">
-                            <div class="search-result-content">
-                                {{s.name}}
-                            </div>
-                        </div>
-                    </b-col>
-                </b-row>
-            </div>    
         </b-container>
     </div>
 </template>
@@ -26,17 +31,17 @@
         name: 'SearchFood',
         data() {
             return {
-                database: [{name: 'david', salt: 0},
-                    {name: 'david1', salt: 10}, 
-                    {name: 'david2', salt: 20},
-                    {name: 'david3', salt: 30},
-                    {name: 'david4', salt: 30},
-                    {name: 'david5', salt: 30},
-                    {name: 'david6', salt: 30},
-                    {name: 'david7', salt: 30},
-                    {name: "JA", salt: 100}, 
-                    {name: "Guillaume", salt: 150}, 
-                    {name: "Zaki", salt: 100}],
+                database: [{label: 'david', value: 0},
+                    {label: 'david1', value: 10},
+                    {label: 'david2', value: 20},
+                    {label: 'david3', value: 30},
+                    {label: 'david4', value: 30},
+                    {label: 'david5', value: 30},
+                    {label: 'david6', value: 30},
+                    {label: 'david7', value: 30},
+                    {label: "JA", value: 100},
+                    {label: "Guillaume", value: 150},
+                    {label: "Zaki", value: 100}],
                 searchValue: ''
             }
         },

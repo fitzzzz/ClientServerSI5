@@ -5,7 +5,16 @@
 
                 <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-                <b-navbar-brand href="#" id="title-card">JAFA - Just Another Food Application</b-navbar-brand>
+                <b-navbar-brand tag="h2" href="#">JAFA - <span
+                        class="font-italic">Just Another Food Application</span></b-navbar-brand>
+
+                <b-collapse is-nav id="nav_collapse">
+                    <b-navbar-nav>
+                        <b-nav-item href="#">Ingrédients</b-nav-item>
+                        <b-nav-item href="#">Recettes</b-nav-item>
+                        <b-nav-item href="#" disabled>Josué PD</b-nav-item>
+                    </b-navbar-nav>
+                </b-collapse>
 
             </b-navbar>
         </header>
