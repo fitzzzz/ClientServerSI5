@@ -1,20 +1,20 @@
 <template>
     <div id="app">
         <AppLayout>
-            <HelloWorld msg="Welcome to Your Vue.js App"/>
+            <search-food/>
         </AppLayout>
     </div>
 </template>
 
 <script>
-    import HelloWorld from './components/HelloWorld.vue'
-    import AppLayout from "./components/AppLayout";
+    import AppLayout from "./components/AppLayout"
+    import SearchFood from "./components/SearchFood.vue"
 
     export default {
         name: 'app',
         components: {
             AppLayout,
-            HelloWorld
+            SearchFood
         }
     }
 </script>
