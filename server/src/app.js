@@ -29,7 +29,7 @@ async function start() {
         host = "db";
     }
 
-    mongoose.connect("mongodb://" + host + ":27017");
+    mongoose.connect("mongodb://" + host + ":27017/off");
 
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
