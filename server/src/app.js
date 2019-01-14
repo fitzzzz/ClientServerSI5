@@ -24,7 +24,12 @@ async function start() {
     await server.listen(port);
     console.log(`✔ Server running on port ${port}`);
 
-    mongoose.connect('mongodb://localhost:27017');
+    let host = "localhost";
+    if (process.env.NODE_ENV === "production") {
+        host = "db";
+    }
+
+    mongoose.connect("mongodb://" + host + ":27017");
 
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));

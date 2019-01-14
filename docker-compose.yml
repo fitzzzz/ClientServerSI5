@@ -2,11 +2,11 @@ version: "3.5"
 
 services:
 
-  order:
+  jafa-backend:
     build:
-      context: order
+      context: server
       dockerfile: Dockerfile
-    container_name: order
+    container_name: jafa-backend
     environment:
     - NODE_ENV=production
     depends_on:
@@ -28,5 +28,3 @@ services:
     - "27017"
     ports:
     - "27017:27017"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
