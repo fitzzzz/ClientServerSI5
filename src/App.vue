@@ -1,8 +1,6 @@
 <template>
     <div id="app">
-        <AppLayout>
-            <Home/>
-        </AppLayout>
+        <AppLayout/>
     </div>
 </template>
 
