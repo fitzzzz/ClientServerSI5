@@ -5,13 +5,12 @@
 
                 <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-                <b-navbar-brand tag="h2" href="#">JAFA - <span
-                        class="font-italic">Just Another Food Application</span></b-navbar-brand>
+                <b-navbar-brand tag="h2" href="#">J A F A</b-navbar-brand>
 
                 <b-collapse is-nav id="nav_collapse">
                     <b-navbar-nav>
-                        <b-nav-item href="#">Ingrédients</b-nav-item>
-                        <b-nav-item href="#">Recettes</b-nav-item>
+                        <b-nav-item href="#">Ingredients</b-nav-item>
+                        <b-nav-item href="#">Recipes</b-nav-item>
                         <b-nav-item href="#" disabled>Josué PD</b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
@@ -21,11 +20,9 @@
         <br/>
         <slot/>
         <br/>
-        <footer class="footer">
-            <b-container>
-                <span class="text-muted">&copy; 2019 Copyright: J-A Puskaric</span>
-            </b-container>
-        </footer>
+        <b-navbar fixed="bottom" type="dark" variant="dark">
+            <span class="text-muted">&copy; 2019 Programmable Web, Team : Guillaume André, Zaki Berouk, David Lang, Jean-Adam Puskaric</span>
+        </b-navbar>
     </div>
 </template>
 
@@ -43,5 +40,7 @@
         height: 60px;
         line-height: 60px;
         background-color: #343a40;
+        white-space: nowrap;
+        overflow: hidden;
     }
 </style>
