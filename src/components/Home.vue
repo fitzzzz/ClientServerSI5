@@ -20,7 +20,7 @@
                         <b-btn variant="primary" href="https://bootstrap-vue.js.org/">Bootstrap Vue</b-btn>
                     </b-col>
                 </b-row>
-                <img src="~@/assets/forkKnife.svg" width="32px" height="32px" alt="Fork & Knife"/>
+                <!--<img src="~@/assets/forkKnife.svg" width="32px" height="32px" alt="Fork & Knife"/>-->
             </b-jumbotron>
         </b-container>
     </div>
