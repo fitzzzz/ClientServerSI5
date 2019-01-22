@@ -40,7 +40,7 @@
             },
             getRepositories: _.debounce((search, loading, vm) => {
                 console.log(search);
-                axios.get('https://jafa-server.herokuapp.com/jafa/api/foods')
+                axios.get('https://jafa-server.herokuapp.com/jafa/api/foods?name=' + search)
                     .then(function (response) {
                         vm.database = response.data.map((elem) => {
                             return {label: elem.name, value: elem}
