@@ -8,49 +8,44 @@
             </b-row>
             <b-row>
                 <b-col cols="8" offset="2">
-                    <v-select @search=search v-model="selected" placeholder="Search food"
-                              :options=database></v-select>
+                    <food-select @selected="updateBaseSelect"/>
                 </b-col>
             </b-row>
-            <div v-if="selected!=null">
-                <p>{{selected.value.name}}</p>
-                <p>{{selected.value.ingredients}}</p>
+            <food-info v-if="baseSelect!=null" :food="baseSelect.value"/>
+            <b-btn :pressed.sync="comparisonToggle" variant="warning">Compare</b-btn>
+            <div v-if="comparisonToggle">
+                <b-row>
+                    <b-col cols="8" offset="2">
+                        <food-select @selected="updateComparisonSelect"/>
+                    </b-col>
+                </b-row>
+                <food-info v-if="comparisonSelect!=null" :food="comparisonSelect.value"/>
             </div>
         </b-container>
     </div>
 </template>
 
 <script>
-    import axios from 'axios';
-    import _ from 'lodash';
+    import FoodSelect from "./FoodSelect";
+    import FoodInfo from "./FoodInfo";
 
     export default {
         name: 'SearchFood',
+        components: {FoodInfo, FoodSelect},
         data() {
             return {
-                database: [],
-                selected: null,
+                comparisonToggle: false,
+                baseSelect: null,
+                comparisonSelect: null,
             }
         },
         methods: {
-            search(search, loading) {
-                console.log(search);
-                loading(true);
-                this.getRepositories(search, loading, this);
+            updateBaseSelect(val) {
+                this.baseSelect = val;
             },
-            getRepositories: _.debounce((search, loading, vm) => {
-                console.log(search);
-                axios.get('https://jafa-server.herokuapp.com/jafa/api/foods?name=' + search)
-                    .then(function (response) {
-                        vm.database = response.data.map((elem) => {
-                            return {label: elem.name, value: elem}
-                        });
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                loading(false)
-            }, 250)
+            updateComparisonSelect(val) {
+                this.comparisonSelect = val;
+            },
         }
     }
 </script>
