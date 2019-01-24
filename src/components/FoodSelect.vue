@@ -1,6 +1,6 @@
 <template>
-    <v-select @search=search placeholder="Search food"
-              :options=database v-model=selected></v-select>
+    <v-select @search=loadSearch @search:focus="maybeSearch" placeholder="Search food"
+              :options=database v-model=selected class="form-control"></v-select>
 </template>
 
 <script>
@@ -9,6 +9,7 @@
 
     export default {
         name: "FoodSelect",
+        props: ["styleClass"],
         data() {
             return {
                 database: [],
@@ -21,12 +22,16 @@
             }
         },
         methods: {
-            search(search, loading) {
-                loading(true);
-                this.getRepositories(search, loading, this);
+            maybeSearch() {
+                if (this.database.length <= 0) {
+                    this.updateDatabase("", this);
+                }
             },
-            getRepositories: _.debounce((search, loading, vm) => {
-                console.log(search);
+            loadSearch(search, loading) {
+                loading(true);
+                this.loadFoods(search, loading, this);
+            },
+            updateDatabase: function (search, vm) {
                 fetch('https://jafa-server.herokuapp.com/jafa/api/foods?name=' + search)
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
@@ -35,12 +40,22 @@
                             return {label: elem.name, value: elem}
                         });
                     });
+            }, loadFoods: _.debounce((search, loading, vm) => {
+                vm.updateDatabase(search, vm);
                 loading(false)
             }, 250)
         }
     }
 </script>
 
-<style scoped>
-
+<style>
+    .v-select {
+        padding: 0.5rem 1.5rem !important;
+    }
+    .dropdown-toggle {
+        border: none !important;
+    }
+    .dropdown-toggle::after {
+        content: none !important;
+    }
 </style>

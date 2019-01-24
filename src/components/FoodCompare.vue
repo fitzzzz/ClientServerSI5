@@ -1,24 +1,21 @@
 <template>
     <div id="search-food-component">
         <b-container>
-            <b-row>
-                <b-col cols="8" offset="2">
-                    <h2>Search some food</h2>
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col cols="8" offset="2">
-                    <food-select @selected="updateBaseSelect"/>
-                </b-col>
-            </b-row>
+            <centered-layout>
+                <h2>Search some food</h2>
+            </centered-layout>
+            <centered-layout>
+                <food-select @selected="updateBaseSelect"/>
+            </centered-layout>
             <food-info v-if="baseSelect!=null" :food="baseSelect.value"/>
-            <b-btn :pressed.sync="comparisonToggle" variant="warning">Compare</b-btn>
+            <br/>
+            <centered-layout>
+                <b-btn :pressed.sync="comparisonToggle" variant="warning" class="float-right">Compare</b-btn>
+            </centered-layout>
             <div v-if="comparisonToggle">
-                <b-row>
-                    <b-col cols="8" offset="2">
-                        <food-select @selected="updateComparisonSelect"/>
-                    </b-col>
-                </b-row>
+                <centered-layout>
+                    <food-select @selected="updateComparisonSelect"/>
+                </centered-layout>
                 <food-info v-if="comparisonSelect!=null" :food="comparisonSelect.value"/>
             </div>
         </b-container>
@@ -28,15 +25,17 @@
 <script>
     import FoodSelect from "./FoodSelect";
     import FoodInfo from "./FoodInfo";
+    import CenteredLayout from "./CenteredLayout";
 
     export default {
         name: 'SearchFood',
-        components: {FoodInfo, FoodSelect},
+        components: {CenteredLayout, FoodInfo, FoodSelect},
         data() {
             return {
                 comparisonToggle: false,
-                baseSelect: null,
+                selection: null,
                 comparisonSelect: null,
+                baseSelect: null
             }
         },
         methods: {

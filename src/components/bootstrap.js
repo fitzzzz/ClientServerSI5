@@ -11,6 +11,9 @@ import bNavbarB from 'bootstrap-vue/es/components/navbar/navbar-brand'
 import bNavbarNav from 'bootstrap-vue/es/components/navbar/navbar-nav'
 import bNavItem from 'bootstrap-vue/es/components/nav/nav-item'
 import bCollapse from 'bootstrap-vue/es/components/collapse/collapse'
+import bForm from 'bootstrap-vue/es/components/form/form'
+import bFormInput from 'bootstrap-vue/es/components/form-input/form-input'
+import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
 
 Vue.component('b-container', bContainer);
 Vue.component('b-col', bCol);
@@ -23,3 +26,6 @@ Vue.component('b-navbar-brand', bNavbarB);
 Vue.component('b-navbar-nav', bNavbarNav);
 Vue.component('b-nav-item', bNavItem);
 Vue.component('b-collapse', bCollapse);
+Vue.component('b-form', bForm);
+Vue.component('b-form-group', bFormGroup);
+Vue.component('b-form-input', bFormInput);
