@@ -3,29 +3,23 @@
         <b-container>
             <centered-layout>
                 <h2>Search some food</h2>
-            </centered-layout>
-            <centered-layout>
                 <food-select @selected="updateBaseSelect"/>
-            </centered-layout>
-            <food-info v-if="baseSelect!=null" :food="baseSelect.value"/>
-            <br/>
-            <centered-layout>
-                <b-btn :pressed.sync="comparisonToggle" variant="warning" class="float-right">Compare</b-btn>
-            </centered-layout>
-            <div v-if="comparisonToggle">
-                <centered-layout>
+                <food-info v-if="baseSelect!=null" :food="baseSelect.value"/>
+                <br/>
+                <b-btn :pressed.sync="comparisonToggle" variant="outline-warning" class="float-right">Compare</b-btn>
+                <div v-if="comparisonToggle">
                     <food-select @selected="updateComparisonSelect"/>
-                </centered-layout>
-                <food-info v-if="comparisonSelect!=null" :food="comparisonSelect.value"/>
-            </div>
+                    <food-info v-if="comparisonSelect!=null" :food="comparisonSelect.value"/>
+                </div>
+            </centered-layout>
         </b-container>
     </div>
 </template>
 
 <script>
-    import FoodSelect from "./FoodSelect";
-    import FoodInfo from "./FoodInfo";
-    import CenteredLayout from "./CenteredLayout";
+    import FoodSelect from "../sub/FoodSelect";
+    import FoodInfo from "../sub/FoodInfo";
+    import CenteredLayout from "../layouts/CenteredLayout";
 
     export default {
         name: 'SearchFood',

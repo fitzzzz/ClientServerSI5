@@ -5,9 +5,9 @@
 </template>
 
 <script>
-    import AppLayout from "./components/AppLayout"
-    import SearchFood from "./components/FoodCompare.vue"
-    import Home from "./components/Home";
+    import AppLayout from "./components/layouts/AppLayout"
+    import SearchFood from "./components/pages/FoodCompare.vue"
+    import Home from "./components/pages/Home";
 
     export default {
         name: 'app',

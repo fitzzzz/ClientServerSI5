@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import FoodRate from './components/FoodRate'
-import FoodCompare from './components/FoodCompare'
-import Home from './components/Home.vue'
+import FoodRate from './components/pages/FoodRate'
+import FoodCompare from './components/pages/FoodCompare'
+import Home from './components/pages/Home.vue'
 
 Vue.use(Router);
 

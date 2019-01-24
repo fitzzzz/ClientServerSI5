@@ -14,6 +14,8 @@ import bCollapse from 'bootstrap-vue/es/components/collapse/collapse'
 import bForm from 'bootstrap-vue/es/components/form/form'
 import bFormInput from 'bootstrap-vue/es/components/form-input/form-input'
 import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
+import bFormInvalidFeedback from 'bootstrap-vue/es/components/form/form-invalid-feedback'
+
 
 Vue.component('b-container', bContainer);
 Vue.component('b-col', bCol);
@@ -29,3 +31,4 @@ Vue.component('b-collapse', bCollapse);
 Vue.component('b-form', bForm);
 Vue.component('b-form-group', bFormGroup);
 Vue.component('b-form-input', bFormInput);
+Vue.component('b-form-invalid-feedback', bFormInvalidFeedback);

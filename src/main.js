@@ -1,7 +1,7 @@
 import App from './App.vue'
 import Vue from 'vue'
 import vSelect from 'vue-select'
-import './components/bootstrap'
+import './components/imports/bootstrap'
 
 import router from './router'
 

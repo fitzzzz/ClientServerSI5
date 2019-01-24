@@ -17,7 +17,8 @@
     "mdbvue": "^4.10.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.2",
-    "vue-select": "^2.5.1"
+    "vue-select": "^2.5.1",
+    "vuelidate": "^0.7.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",
