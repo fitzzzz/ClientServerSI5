@@ -9,7 +9,8 @@
 
                 <b-collapse is-nav id="nav_collapse">
                     <b-navbar-nav>
-                        <b-nav-item to="/recipes">Recipes</b-nav-item>
+                        <b-nav-item to="/foodcompare">Compare</b-nav-item>
+                        <b-nav-item to="/foodrate">Rate</b-nav-item>
                         <b-nav-item href="#" disabled>Josué PD</b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
@@ -18,7 +19,7 @@
         </header>
         <br/>
         <router-view/>
-        <br/>
+        <div id="footer-space"></div>
         <b-navbar fixed="bottom" type="dark" variant="dark">
             <span class="text-muted">&copy; 2019 Programmable Web, Team : Guillaume André, Zaki Berouk, David Lang, Jean-Adam Puskaric</span>
         </b-navbar>
@@ -35,5 +36,9 @@
     h2 {
         font-style: inherit;
         color: inherit;
+    }
+
+    #footer-space {
+        height: 135px;
     }
 </style>

@@ -27,12 +27,11 @@
             },
             getRepositories: _.debounce((search, loading, vm) => {
                 console.log(search);
-                axios.get('https://jafa-server.herokuapp.com/jafa/api/foods?name=' + search)
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .then(function (response) {
-                        vm.database = response.data.map((elem) => {
+                fetch('https://jafa-server.herokuapp.com/jafa/api/foods?name=' + search)
+                    .catch((error) => console.log(error))
+                    .then((response) => response.json())
+                    .then((data) => {
+                        vm.database = data.map((elem) => {
                             return {label: elem.name, value: elem}
                         });
                     });

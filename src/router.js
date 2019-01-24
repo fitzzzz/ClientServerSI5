@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SearchFood from './components/SearchFood.vue'
+import FoodRate from './components/FoodRate'
+import FoodCompare from './components/FoodCompare'
 import Home from './components/Home.vue'
 
 Vue.use(Router);
@@ -13,9 +14,14 @@ export default new Router({
             component: Home
         },
         {
-            path: '/recipes',
-            name: 'SearchFood',
-            component: SearchFood
+            path: '/foodrate',
+            name: 'foodrate',
+            component: FoodRate
+        },
+        {
+            path: '/foodcompare',
+            name: 'FoodCompare',
+            component: FoodCompare
         }
     ]
 })
