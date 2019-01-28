@@ -22,7 +22,7 @@
                             </b-form-invalid-feedback>
                         </b-form-group>
                         <b-btn type="submit" variant="outline-warning" class="float-right"
-                               :disabled="$v.myScore.$invalid">Submit
+                               :disabled="$v.myScore.$invalid">Rate
                         </b-btn>
                     </b-form>
                 </div>
@@ -55,12 +55,22 @@
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
                     .then((data) => {
-                        this.totalScore = data.score;
+                        this.totalScore = parseFloat(data.score).toFixed(2);
                     });
             },
             onSubmit(evt) {
                 evt.preventDefault();
-                console.log(JSON.stringify(this.myScore));
+                fetch('https://jafa-server.herokuapp.com/jafa/api/foods/' + this.selection.value.id + '/score',
+                    {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            score: this.myScore
+                        }), headers: {"Content-Type": "application/json"}
+                    })
+                    .catch((error) => console.log(error))
+                    .then(() => {
+                        this.updateSelection(this.selection);
+                    });
             },
         },
         mixins: [

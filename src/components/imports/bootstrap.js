@@ -15,8 +15,11 @@ import bForm from 'bootstrap-vue/es/components/form/form'
 import bFormInput from 'bootstrap-vue/es/components/form-input/form-input'
 import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
 import bFormInvalidFeedback from 'bootstrap-vue/es/components/form/form-invalid-feedback'
+import bProgress from 'bootstrap-vue/es/components/progress/progress';
+import bProgressBar from 'bootstrap-vue/es/components/progress/progress-bar';
 
-
+Vue.component('b-progress', bProgress);
+Vue.component('b-progress-bar', bProgressBar);
 Vue.component('b-container', bContainer);
 Vue.component('b-col', bCol);
 Vue.component('b-row', bRow);
@@ -32,3 +35,4 @@ Vue.component('b-form', bForm);
 Vue.component('b-form-group', bFormGroup);
 Vue.component('b-form-input', bFormInput);
 Vue.component('b-form-invalid-feedback', bFormInvalidFeedback);
+Vue.component('b-progress', bProgress);

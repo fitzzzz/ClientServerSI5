@@ -20,9 +20,9 @@
             </table>
         </div>
         <div v-else class="no-information">
-            <img :src="getRandomIcon()" width="70%" height="70%" alt="No Ingredient Found"/>
+            <img :src="getRandomIcon()" width="50%" height="50%" alt="No Ingredient Found"/>
             <div class="row no-info-message">
-                <p class="lead">Whoopsie ! <br/>Nous n'avons aucune information concernant ce produit...</p>
+                <p class="lead">Whoopsie ! <br/>We have no information about that product...</p>
             </div>
         </div>
 
