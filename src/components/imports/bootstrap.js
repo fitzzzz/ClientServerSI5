@@ -16,10 +16,11 @@ import bFormInput from 'bootstrap-vue/es/components/form-input/form-input'
 import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
 import bFormInvalidFeedback from 'bootstrap-vue/es/components/form/form-invalid-feedback'
 import bProgress from 'bootstrap-vue/es/components/progress/progress';
-import bProgressBar from 'bootstrap-vue/es/components/progress/progress-bar';
+import bNavItemDropdown from 'bootstrap-vue/es/components/nav/nav-item-dropdown';
+import bDropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
+import bDropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
 
 Vue.component('b-progress', bProgress);
-Vue.component('b-progress-bar', bProgressBar);
 Vue.component('b-container', bContainer);
 Vue.component('b-col', bCol);
 Vue.component('b-row', bRow);
@@ -36,3 +37,6 @@ Vue.component('b-form-group', bFormGroup);
 Vue.component('b-form-input', bFormInput);
 Vue.component('b-form-invalid-feedback', bFormInvalidFeedback);
 Vue.component('b-progress', bProgress);
+Vue.component('b-nav-item-dropdown', bNavItemDropdown);
+Vue.component('b-dropdown-item', bDropdownItem);
+Vue.component('b-dropdown', bDropdown);

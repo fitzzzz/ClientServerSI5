@@ -6,7 +6,6 @@
 
 <script>
     import AppLayout from "./components/layouts/AppLayout"
-    import SearchFood from "./components/pages/FoodCompare.vue"
     import Home from "./components/pages/Home";
 
     export default {
@@ -14,7 +13,6 @@
         components: {
             Home,
             AppLayout,
-            SearchFood
         }
     }
 </script>
