@@ -19,7 +19,10 @@ import bProgress from 'bootstrap-vue/es/components/progress/progress';
 import bNavItemDropdown from 'bootstrap-vue/es/components/nav/nav-item-dropdown';
 import bDropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
 import bDropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
+import vBModal from 'bootstrap-vue/es/directives/modal/modal';
+import bModal from 'bootstrap-vue/es/components/modal/modal';
 
+Vue.component('b-modal', bModal);
 Vue.component('b-progress', bProgress);
 Vue.component('b-container', bContainer);
 Vue.component('b-col', bCol);
@@ -40,3 +43,5 @@ Vue.component('b-progress', bProgress);
 Vue.component('b-nav-item-dropdown', bNavItemDropdown);
 Vue.component('b-dropdown-item', bDropdownItem);
 Vue.component('b-dropdown', bDropdown);
+
+Vue.directive('b-modal', vBModal);

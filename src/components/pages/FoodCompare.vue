@@ -3,7 +3,9 @@
         <b-container>
             <b-row>
                 <b-col cols="12" offset="0" :lg="totalWidth" :offset-lg="totalOffset">
-                    <h2>Search some food</h2>
+                    <h2>Search or compare some food</h2>
+                    <b-btn :pressed.sync="comparisonToggle" variant="outline-warning" class="btn-block">Compare</b-btn>
+                    <br/>
                     <comparison v-if="needsComparison" :id1="baseSelect.value.id"
                                 :id2="comparisonSelect.value.id"></comparison>
                     <b-row>
@@ -17,7 +19,6 @@
                         </b-col>
                     </b-row>
                     <div class="separator"></div>
-                    <b-btn :pressed.sync="comparisonToggle" variant="outline-warning" class="btn-block">Compare</b-btn>
                 </b-col>
             </b-row>
         </b-container>
