@@ -3064,7 +3064,7 @@ a.btn.disabled, fieldset:disabled a.btn {
     box-shadow: 0 0 0 0.2rem rgba(71, 38, 15, 0.5);
 }
 
-.btn-outline-warning:active {
+.btn-outline-warning:active, .btn-outline-primary:active {
     position: relative;
     top: 1px
 }

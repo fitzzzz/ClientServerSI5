@@ -25,7 +25,11 @@ import bAlert from 'bootstrap-vue/es/components/alert/alert';
 import bListGroupItem from 'bootstrap-vue/es/components/list-group/list-group-item';
 import bListGroup from 'bootstrap-vue/es/components/list-group/list-group';
 import bPaginationNav from 'bootstrap-vue/es/components/pagination-nav/pagination-nav';
+import bInput from 'bootstrap-vue/es/components/form-input/form-input'
+import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select';
 
+Vue.component('b-form-select', bFormSelect);
+Vue.component('b-input', bInput);
 Vue.component('b-pagination-nav', bPaginationNav);
 Vue.component('b-list-group', bListGroup);
 Vue.component('b-list-group-item', bListGroupItem);
