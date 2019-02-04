@@ -1,10 +1,12 @@
 <template>
     <b-row>
         <b-col cols="6">
-            <b-progress height="1.5rem" class="rtl" :max="max" :precision="2" :variant="score1color" :value="score1" show-value/>
+            <p class="right">Score</p>
+            <b-progress height="1.5rem" class="rtl bottom-15" :max="max" :precision="2" :variant="score1color" :value="score1" show-value/>
         </b-col>
         <b-col cols="6">
-            <b-progress height="1.5rem" :max="max" :value="score2" :variant="score2color" :precision="2" show-value/>
+            <p>Score</p>
+            <b-progress height="1.5rem" class="bottom-15" :max="max" :value="score2" :variant="score2color" :precision="2" show-value/>
         </b-col>
         <div id="spacer"></div>
     </b-row>
@@ -55,6 +57,14 @@
 </script>
 
 <style scoped>
+    .bottom-15 {
+        margin-bottom: 15px;
+    }
+
+    .right {
+        text-align: right;
+    }
+
     .rtl {
         direction: rtl;
     }

@@ -2,7 +2,7 @@
     <div id="search-food-component">
         <b-container>
             <b-row>
-                <b-col cols="12" offset="0" :lg="totalWidth" :offset-lg="totalOffset">
+                <b-col cols="12" offset="0" lg="10" offset-lg="1">
                     <h2>Search or compare some food</h2>
                     <b-btn :pressed.sync="comparisonToggle" variant="outline-warning" class="btn-block">Compare</b-btn>
                     <br/>
@@ -11,11 +11,12 @@
                     <b-row>
                         <b-col @sm=comparisonWidth class="mb-4">
                             <food-select @selected="updateBaseSelect"/>
-                            <food-info v-if="baseSelect!=null" :food="baseSelect.value"/>
+                            <food-info v-if="baseSelect!=null&&!comparisonToggle" :food="baseSelect.value"/>
+                            <MinimalFoodInfo v-else-if="baseSelect!=null" :selection="baseSelect"/>
                         </b-col>
                         <b-col sm="6" v-if="comparisonToggle">
                             <food-select @selected="updateComparisonSelect"/>
-                            <food-info v-if="comparisonSelect!=null" :food="comparisonSelect.value"/>
+                            <MinimalFoodInfo v-if="comparisonSelect!=null" :selection="comparisonSelect"/>
                         </b-col>
                     </b-row>
                     <div class="separator"></div>
@@ -28,12 +29,12 @@
 <script>
     import FoodSelect from "../sub/FoodSelect";
     import FoodInfo from "../sub/FoodInfo";
-    import CenteredLayout from "../layouts/CenteredLayout";
     import Comparison from "../sub/Comparison";
+    import MinimalFoodInfo from "../sub/MinimalFoodInfo";
 
     export default {
         name: 'CompareFood',
-        components: {Comparison, CenteredLayout, FoodInfo, FoodSelect},
+        components: {MinimalFoodInfo, Comparison, FoodInfo, FoodSelect},
         data() {
             return {
                 comparisonToggle: false,
@@ -52,12 +53,6 @@
         computed: {
             comparisonWidth: function () {
                 return this.comparisonToggle ? '6' : '12';
-            },
-            totalWidth: function () {
-                return this.comparisonToggle ? '10' : '8';
-            },
-            totalOffset: function () {
-                return this.comparisonToggle ? '1' : '2';
             },
             needsComparison() {
                 return this.comparisonToggle && this.baseSelect != null && this.comparisonSelect != null;

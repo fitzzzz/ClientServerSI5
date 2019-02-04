@@ -49,7 +49,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 
     .food-info-container{
         display: flex;

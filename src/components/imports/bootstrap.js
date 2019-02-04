@@ -22,7 +22,13 @@ import bDropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
 import vBModal from 'bootstrap-vue/es/directives/modal/modal';
 import bModal from 'bootstrap-vue/es/components/modal/modal';
 import bAlert from 'bootstrap-vue/es/components/alert/alert';
+import bListGroupItem from 'bootstrap-vue/es/components/list-group/list-group-item';
+import bListGroup from 'bootstrap-vue/es/components/list-group/list-group';
+import bPaginationNav from 'bootstrap-vue/es/components/pagination-nav/pagination-nav';
 
+Vue.component('b-pagination-nav', bPaginationNav);
+Vue.component('b-list-group', bListGroup);
+Vue.component('b-list-group-item', bListGroupItem);
 Vue.component('b-alert', bAlert);
 Vue.component('b-modal', bModal);
 Vue.component('b-progress', bProgress);
