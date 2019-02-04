@@ -25,6 +25,7 @@
                                :disabled="$v.score.$invalid">Rate
                         </b-btn>
                     </b-form>
+                    <div class="separator"></div>
                     <b-form @submit="onSubmitComment">
                         <b-form-group
                                 label="Enter a nice comment:"
@@ -40,7 +41,8 @@
                             </b-form-invalid-feedback>
                         </b-form-group>
                         <b-btn type="submit" variant="outline-warning" class="float-right"
-                               :disabled="$v.comment.$invalid">Comment</b-btn>
+                               :disabled="$v.comment.$invalid">Comment
+                        </b-btn>
                     </b-form>
                 </div>
             </centered-layout>
@@ -69,6 +71,9 @@
             }
         },
         methods: {
+            getAuthorization() {
+                return 'Bearer ' + localStorage.token;
+            },
             updateSelection(val) {
                 this.selection = val;
                 fetch('https://jafa-server.herokuapp.com/jafa/api/foods/' + val.value.id + '/score')
@@ -85,7 +90,10 @@
                         method: 'POST',
                         body: JSON.stringify({
                             score: this.score
-                        }), headers: {"Content-Type": "application/json"}
+                        }), headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": this.getAuthorization()
+                        }
                     })
                     .catch((error) => console.log(error))
                     .then(() => {
@@ -93,7 +101,21 @@
                     });
             },
             onSubmitComment(evt) {
-                console.log(evt);
+                evt.preventDefault();
+                fetch('https://jafa-server.herokuapp.com/jafa/api/foods/' + this.selection.value.id + '/comment',
+                    {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            message: this.comment,
+                        }), headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": this.getAuthorization()
+                        }
+                    })
+                    .catch((error) => console.log(error))
+                    .then(() => {
+                        console.log(this.comment);
+                    });
             },
         },
         mixins: [
@@ -112,3 +134,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .separator {
+        margin-bottom: 40px;
+    }
+</style>

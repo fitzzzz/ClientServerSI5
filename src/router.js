@@ -16,7 +16,7 @@ export default new Router({
         },
         {
             path: '/foodrate',
-            name: 'foodrate',
+            name: 'FoodRate',
             component: FoodRate
         },
         {

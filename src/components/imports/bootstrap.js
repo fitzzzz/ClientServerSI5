@@ -21,7 +21,9 @@ import bDropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
 import bDropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
 import vBModal from 'bootstrap-vue/es/directives/modal/modal';
 import bModal from 'bootstrap-vue/es/components/modal/modal';
+import bAlert from 'bootstrap-vue/es/components/alert/alert';
 
+Vue.component('b-alert', bAlert);
 Vue.component('b-modal', bModal);
 Vue.component('b-progress', bProgress);
 Vue.component('b-container', bContainer);
