@@ -76,7 +76,7 @@
             },
             updateSelection(val) {
                 this.selection = val;
-                fetch('https://jafa-server.herokuapp.com/jafa/api/foods/' + val.value.id + '/score')
+                fetch(this.JAFA_SERVER + 'foods/' + val.value.id + '/score')
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
                     .then((data) => {
@@ -85,7 +85,7 @@
             },
             onSubmitScore(evt) {
                 evt.preventDefault();
-                fetch('https://jafa-server.herokuapp.com/jafa/api/foods/' + this.selection.value.id + '/score',
+                fetch(this.JAFA_SERVER + 'foods/' + this.selection.value.id + '/score',
                     {
                         method: 'POST',
                         body: JSON.stringify({
@@ -102,7 +102,7 @@
             },
             onSubmitComment(evt) {
                 evt.preventDefault();
-                fetch('https://jafa-server.herokuapp.com/jafa/api/foods/' + this.selection.value.id + '/comment',
+                fetch(this.JAFA_SERVER + '/foods/' + this.selection.value.id + '/comment',
                     {
                         method: 'POST',
                         body: JSON.stringify({

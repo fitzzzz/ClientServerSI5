@@ -58,7 +58,7 @@
                 if (evt) {
                     evt.preventDefault();
                 }
-                fetch('https://jafa-server.herokuapp.com/jafa/api/users/authenticate',
+                fetch(this.JAFA_SERVER + 'users/authenticate',
                     {
                         method: 'POST',
                         body: JSON.stringify({

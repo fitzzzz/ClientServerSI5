@@ -31,7 +31,7 @@
                 this.loadFoods(search, loading, this);
             },
             updateDatabase: function (search, vm) {
-                fetch('https://jafa-server.herokuapp.com/jafa/api/foods?name=' + search)
+                fetch(vm.JAFA_SERVER + 'foods?name=' + search)
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
                     .then((data) => {

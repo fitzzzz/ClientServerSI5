@@ -44,7 +44,7 @@
         },
         methods: {
             async getScoreFromFoodId(id) {
-                return await fetch('https://jafa-server.herokuapp.com/jafa/api/foods/' + id + '/score')
+                return await fetch(this.JAFA_SERVER + 'foods/' + id + '/score')
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
             }
