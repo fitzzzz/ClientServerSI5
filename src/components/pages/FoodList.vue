@@ -5,13 +5,14 @@
                 <h2>List some food</h2>
                 <b-form inline>
                     <b-row class="full-width">
-                        <b-col cols="4">
+                        <b-col md="4" class="mb-2">
                             <div>
                                 <p>Filter by name</p>
-                                <b-input class="full-width" @input="refreshList" v-model="searchQuery" placeholder="Filter"/>
+                                <b-input class="full-width" @input="refreshList" v-model="searchQuery"
+                                         placeholder="Filter"/>
                             </div>
                         </b-col>
-                        <b-col cols="4">
+                        <b-col md="4" class="mb-2">
                             <div>
                                 <p>Order by</p>
                                 <b-form-select class="full-width" @select="refreshList" v-model="sortingCriteria">
@@ -20,7 +21,7 @@
                                 </b-form-select>
                             </div>
                         </b-col>
-                        <b-col cols="4">
+                        <b-col md="4" class="mb-2">
                             <div>
                                 <p>In order</p>
                                 <b-btn class="button-form" variant="outline-secondary" size="sm"
@@ -33,13 +34,9 @@
                     </b-row>
                 </b-form>
                 <br/>
-                <b-list-group>
-                    <b-list-group-item v-for="food in foodList" href="#" :key="food.id">
-                        {{food.name}}
-                    </b-list-group-item>
-                </b-list-group>
+                <FoodItems :food-list="foodList"/>
                 <br/>
-                <b-pagination-nav base-url="#" :number-of-pages="10" v-model="currentPage"/>
+                <b-pagination-nav base-url="#/foodlist/" :number-of-pages="nbPages" v-model="currentPage"/>
             </centered-layout>
         </b-container>
     </div>
@@ -47,17 +44,20 @@
 
 <script>
     import CenteredLayout from "../layouts/CenteredLayout";
+    import FoodItems from "../sub/FoodItems";
+    import _ from "lodash";
 
     export default {
         name: 'SearchFood',
-        components: {CenteredLayout},
+        components: {FoodItems, CenteredLayout},
         data() {
             return {
                 foodList: [],
                 currentPage: 1,
                 sorting: "desc",
-                searchQuery: null,
-                sortingCriteria: "score"
+                searchQuery: "",
+                sortingCriteria: "score",
+                nbPages: 1
             }
         },
         computed: {
@@ -68,16 +68,16 @@
             }
         },
         watch: {
-            currentPage : function () {
+            currentPage: function () {
                 this.refreshList();
             },
-            sorting : function() {
+            sorting: function () {
                 this.refreshList();
             },
-            searchQuery : function() {
+            searchQuery: function () {
                 this.refreshList();
             },
-            sortingCriteriat: function() {
+            sortingCriteriat: function () {
                 this.refreshList();
             }
         },
@@ -85,22 +85,25 @@
             reverseSorting() {
                 this.sorting === "desc" ? this.sorting = "asc" : this.sorting = "desc";
             },
-            refreshList: function () {
+            refreshList: _.debounce(function () {
                 let url = new URL(this.JAFA_SERVER + "foods");
-                let params = {order: this.sorting, criteria: this.sortingCriteria, page: this.currentPage};
-                if (this.searchQuery != null ) {
-                    params.name = this.searchQuery;
-                }
+                let params = {
+                    name: this.searchQuery,
+                    order: this.sorting,
+                    criteria: this.sortingCriteria,
+                    page: this.currentPage
+                };
                 url.search = new URLSearchParams(params);
                 fetch(url)
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
                     .then((data) => {
-                        this.foodList = data.map((elem) => {
+                        this.nbPages = Math.ceil(data.count / 20);
+                        this.foodList = data.data.map((elem) => {
                             return {id: elem.id, name: elem.name}
                         });
                     });
-            }
+            }, 200)
         },
         mounted() {
             this.refreshList();

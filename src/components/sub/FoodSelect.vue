@@ -35,7 +35,7 @@
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
                     .then((data) => {
-                        vm.database = data.map((elem) => {
+                        vm.database = data.data.map((elem) => {
                             return {label: elem.name, value: elem}
                         });
                     });

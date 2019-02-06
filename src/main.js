@@ -8,6 +8,7 @@ import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import router from './router'
 
 Vue.component('v-select', vSelect);
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 library.add(faAngleDown);

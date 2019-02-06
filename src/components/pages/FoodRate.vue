@@ -98,6 +98,7 @@
                     .catch((error) => console.log(error))
                     .then(() => {
                         this.updateSelection(this.selection);
+                        //this.score = null;
                     });
             },
             onSubmitComment(evt) {
@@ -114,7 +115,7 @@
                     })
                     .catch((error) => console.log(error))
                     .then(() => {
-                        console.log(this.comment);
+                        this.comment = "";
                     });
             },
         },
@@ -137,6 +138,6 @@
 
 <style scoped>
     .separator {
-        margin-bottom: 40px;
+        margin-bottom: 80px;
     }
 </style>

@@ -90,7 +90,7 @@
                 this.loggedin = false;
                 this.loggedinUsername = "";
                 this.$emit('login', false);
-                router.push({ path: '/' })
+                router.replace({ path: '/' })
             }
         },
         mounted() {
