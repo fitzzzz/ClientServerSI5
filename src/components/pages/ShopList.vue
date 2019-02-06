@@ -7,7 +7,7 @@
 
             <img v-if="selectedShop"
                  :src="getShopSrc()"
-            alt="WOLA"/>
+            alt="Si ca s'affiche pas c'est parce qu'il y a pas la variable d'environnement de 7"/>
         </centered-layout>
     </b-container>
 </template>
