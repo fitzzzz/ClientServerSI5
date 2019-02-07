@@ -63,7 +63,7 @@
         computed: {
             buttonIcon() {
                 return {
-                    rotate: this.sorting === "desc" ? 180 : 0
+                    rotate: this.sorting === "desc" ? 0 : 180
                 };
             }
         },
@@ -77,7 +77,7 @@
             searchQuery: function () {
                 this.refreshList();
             },
-            sortingCriteriat: function () {
+            sortingCriteria: function () {
                 this.refreshList();
             }
         },
@@ -99,9 +99,16 @@
                     .then((response) => response.json())
                     .then((data) => {
                         this.nbPages = Math.ceil(data.count / 20);
-                        this.foodList = data.data.map((elem) => {
-                            return {id: elem.id, name: elem.name}
-                        });
+                        if (this.sortingCriteria === "score") {
+                            this.foodList = data.data.map((elem) => {
+                                return {id: elem.id, name: elem.name, value: elem.score}
+                            });
+                        }
+                        else {
+                            this.foodList = data.data.map((elem) => {
+                                return {id: elem.id, name: elem.name, value: elem.price}
+                            });
+                        }
                     });
             }, 200)
         },

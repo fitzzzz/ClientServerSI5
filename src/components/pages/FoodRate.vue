@@ -9,7 +9,7 @@
                     <p>Global score : {{totalScore}}</p>
                     <b-form @submit="onSubmitScore">
                         <b-form-group
-                                label="Enter your own score:"
+                                label="Enter your own recipe with:"
                                 label-for="scoreInput">
                             <b-form-input id="scoreInput"
                                           type="number"
@@ -98,7 +98,7 @@
                     .catch((error) => console.log(error))
                     .then(() => {
                         this.updateSelection(this.selection);
-                        //this.score = null;
+                        this.score = null;
                     });
             },
             onSubmitComment(evt) {

@@ -2,6 +2,9 @@
     <b-list-group>
         <b-list-group-item button class="pointer" v-for="food in foodList" @click="goToFood(food.id)" :key="food.id">
             {{food.name}}
+            <b-badge class="float-right">
+                {{parseFloat(food.value).toFixed(2)}}
+            </b-badge>
         </b-list-group-item>
     </b-list-group>
 </template>

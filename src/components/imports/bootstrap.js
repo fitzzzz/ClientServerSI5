@@ -27,7 +27,11 @@ import bListGroup from 'bootstrap-vue/es/components/list-group/list-group';
 import bPaginationNav from 'bootstrap-vue/es/components/pagination-nav/pagination-nav';
 import bInput from 'bootstrap-vue/es/components/form-input/form-input'
 import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select';
+import bBadge from 'bootstrap-vue/es/components/badge/badge';
+import bFormTextarea from 'bootstrap-vue/es/components/form-textarea/form-textarea';
 
+Vue.component('b-form-textarea', bFormTextarea);
+Vue.component('b-badge', bBadge);
 Vue.component('b-form-select', bFormSelect);
 Vue.component('b-input', bInput);
 Vue.component('b-pagination-nav', bPaginationNav);

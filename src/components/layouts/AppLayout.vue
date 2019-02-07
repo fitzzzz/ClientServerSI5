@@ -12,7 +12,7 @@
                         <b-nav-item to="/foodlist">List</b-nav-item>
                         <b-nav-item to="/foodcompare">Compare</b-nav-item>
                         <b-nav-item to="/shops">Shops</b-nav-item>
-                        <b-nav-item to="/recipes">Recipes</b-nav-item>
+                        <b-nav-item v-if="loggedin" to="/recipes">Recipes</b-nav-item>
                         <b-nav-item v-if="loggedin" to="/foodrate">Rate</b-nav-item>
                     </b-navbar-nav>
 

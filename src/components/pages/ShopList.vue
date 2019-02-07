@@ -3,31 +3,23 @@
         <centered-layout>
             <h2>Access The Shops</h2>
             <v-select placeholder="Search Shop"
-                      :options=shops v-model=selectedShop class="form-control"></v-select>
-
-            <img v-if="selectedShop"
-                 :src="getShopSrc()"
-            alt="Si ca s'affiche pas c'est parce qu'il y a pas la variable d'environnement de 7"/>
+                      :options=shops v-model=selectedRecipe class="form-control"></v-select>
+            <ShopInfo v-if="selectedRecipe" :shop="selectedRecipe.value"/>
         </centered-layout>
     </b-container>
 </template>
 
 <script>
     import CenteredLayout from "../layouts/CenteredLayout";
+    import ShopInfo from "../sub/ShopInfo";
 
     export default {
         name: 'ShopList',
-        components: {CenteredLayout},
+        components: {ShopInfo, CenteredLayout},
         data() {
             return {
                 shops: [],
-                selectedShop: null
-            }
-        },
-        methods: {
-            getShopSrc() {
-                console.log(process.env);
-                return "https://maps.googleapis.com/maps/api/staticmap?center=" + this.selectedShop.value.address + "&zoom=17&size=400x400&key=" + process.env.VUE_APP_GOOGLE_APIKEY
+                selectedRecipe: null
             }
         },
         mounted() {
