@@ -1,10 +1,15 @@
-'use strict';
+require("@babel/core").transform("code", {
+    plugins: ["transform-inline-environment-variables",{
+        "include": [
+            "NODE_ENV",
+            "BASE_URL",
+            "GOOGLE_APIKEY"
+        ]
+    }]
+});
 
 module.exports = {
-    presets: [
-        '@vue/app'
-    ],
-    NODE_ENV: '"production"',
-    BASE_URL: '"/"',
-    GOOGLE_APIKEY: process.env.GOOGLE_APIKEY
+  presets: [
+    '@vue/app'
+  ],
 };
