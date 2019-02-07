@@ -27,7 +27,7 @@
         methods: {
             getShopSrc() {
                 console.log(process.env);
-                return "https://maps.googleapis.com/maps/api/staticmap?center=" + this.selectedShop.value.address + "&zoom=17&size=400x400&key=" + process.env.GOOGLE_APIKEY
+                return "https://maps.googleapis.com/maps/api/staticmap?center=" + this.selectedShop.value.address + "&zoom=17&size=400x400&key=" + process.env.VUE_APP_GOOGLE_APIKEY
             }
         },
         mounted() {
