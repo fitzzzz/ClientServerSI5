@@ -17,7 +17,7 @@
                                           :state="!$v.score.$invalid"
                                           placeholder="Enter Score">
                             </b-form-input>
-                            <b-form-invalid-feedback id="liveFeedback">
+                            <b-form-invalid-feedback>
                                 Score must be a floating number between 0 and 10
                             </b-form-invalid-feedback>
                         </b-form-group>
@@ -36,7 +36,7 @@
                                           :state="!$v.comment.$invalid"
                                           placeholder="Enter a comment">
                             </b-form-input>
-                            <b-form-invalid-feedback id="liveFeedback">
+                            <b-form-invalid-feedback>
                                 Comment must not be too short or too long! (max : 200 characters)
                             </b-form-invalid-feedback>
                         </b-form-group>
@@ -71,9 +71,6 @@
             }
         },
         methods: {
-            getAuthorization() {
-                return 'Bearer ' + localStorage.token;
-            },
             updateSelection(val) {
                 this.selection = val;
                 fetch(this.JAFA_SERVER + 'foods/' + val.value.id + '/score')
@@ -92,7 +89,7 @@
                             score: this.score
                         }), headers: {
                             "Content-Type": "application/json",
-                            "Authorization": this.getAuthorization()
+                            "Authorization": this.AUTHORIZATION
                         }
                     })
                     .catch((error) => console.log(error))
@@ -103,7 +100,7 @@
             },
             onSubmitComment(evt) {
                 evt.preventDefault();
-                fetch(this.JAFA_SERVER + '/foods/' + this.selection.value.id + '/comment',
+                fetch(this.JAFA_SERVER + 'foods/' + this.selection.value.id + '/comment',
                     {
                         method: 'POST',
                         body: JSON.stringify({

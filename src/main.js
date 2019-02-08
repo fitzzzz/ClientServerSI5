@@ -18,7 +18,8 @@ Vue.config.productionTip = false;
 Vue.mixin({
     data: function () {
         return {
-            JAFA_SERVER: 'https://jafa-server.herokuapp.com/jafa/api/'
+            JAFA_SERVER: 'https://jafa-server.herokuapp.com/jafa/api/',
+            AUTHORIZATION: 'Bearer ' + localStorage.token
         }
     }
 });
