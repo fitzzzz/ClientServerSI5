@@ -1,8 +1,7 @@
 <template>
     <div>
         <h4>{{shop.name}}</h4>
-        <p>{{shop.address}}</p>
-        <p>{{shop.region}}</p>
+        <p>{{shop.address}}<br/>{{shop.region}}</p>
         <img :src="getShopSrc(shop)"/>
     </div>
 </template>
@@ -21,3 +20,17 @@
         }
     }
 </script>
+
+<style>
+    h4 {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    img {
+        margin-top : 30px;
+    }
+</style>
