@@ -30,7 +30,9 @@ import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select';
 import bBadge from 'bootstrap-vue/es/components/badge/badge';
 import bFormTextarea from 'bootstrap-vue/es/components/form-textarea/form-textarea';
 import bPopover from 'bootstrap-vue/es/components/popover/popover';
+import bNav from 'bootstrap-vue/es/components/nav/nav';
 
+Vue.component('b-nav', bNav);
 Vue.component('b-popover', bPopover);
 Vue.component('b-form-textarea', bFormTextarea);
 Vue.component('b-badge', bBadge);

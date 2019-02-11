@@ -26,24 +26,7 @@
                         </b-btn>
                     </b-form>
                     <div class="separator"></div>
-                    <b-form @submit="onSubmitComment">
-                        <b-form-group
-                                label="Enter a nice comment:"
-                                label-for="commentInput">
-                            <b-form-input id="commentInput"
-                                          type="text"
-                                          v-model="comment"
-                                          :state="!$v.comment.$invalid"
-                                          placeholder="Enter a comment">
-                            </b-form-input>
-                            <b-form-invalid-feedback>
-                                Comment must not be too short or too long! (max : 200 characters)
-                            </b-form-invalid-feedback>
-                        </b-form-group>
-                        <b-btn type="submit" variant="outline-warning" class="float-right"
-                               :disabled="$v.comment.$invalid">Comment
-                        </b-btn>
-                    </b-form>
+                    <CommentForm :id="this.selection.value.id" location="foods/"/>
                 </div>
             </centered-layout>
         </b-container>
@@ -53,15 +36,13 @@
 <script>
     import FoodSelect from "../sub/FoodSelect";
     import CenteredLayout from "../layouts/CenteredLayout";
-    import FoodInfo from "../sub/FoodInfo";
     import {validationMixin} from "vuelidate"
-    import {required, between} from "vuelidate/lib/validators"
-    import maxLength from "vuelidate/src/validators/maxLength";
-    import minLength from "vuelidate/src/validators/minLength";
+    import {between, required} from "vuelidate/lib/validators"
+    import CommentForm from "../sub/CommentForm";
 
     export default {
         name: 'SearchFood',
-        components: {CenteredLayout, FoodInfo, FoodSelect},
+        components: {CommentForm, CenteredLayout, FoodSelect},
         data() {
             return {
                 selection: null,
@@ -98,23 +79,6 @@
                         this.score = null;
                     });
             },
-            onSubmitComment(evt) {
-                evt.preventDefault();
-                fetch(this.JAFA_SERVER + 'foods/' + this.selection.value.id + '/comment',
-                    {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            message: this.comment,
-                        }), headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": this.getAuthorization()
-                        }
-                    })
-                    .catch((error) => console.log(error))
-                    .then(() => {
-                        this.comment = "";
-                    });
-            },
         },
         mixins: [
             validationMixin
@@ -124,11 +88,6 @@
                 required,
                 between: between(0, 10)
             },
-            comment: {
-                required,
-                minLength: minLength(3),
-                maxLength: maxLength(200),
-            }
         }
     }
 </script>
