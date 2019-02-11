@@ -22,8 +22,6 @@
                 .catch((error) => console.log(error))
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log("GWE");
-                    console.log(data);
                     this.comments = data;
                 });
         }
