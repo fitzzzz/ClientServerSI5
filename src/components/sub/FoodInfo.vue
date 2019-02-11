@@ -1,5 +1,5 @@
 <template>
-    <div v-if="food.ingredients.length > 0" class="food-info-container">
+    <div v-if="food.ingredients && food.ingredients.length > 0" class="food-info-container">
         <h2>{{food.name}}</h2>
 
         <div class="food-header col-xs-12 col-lg-12">

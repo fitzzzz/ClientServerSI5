@@ -12,7 +12,7 @@
                           :options=recipes v-model=selectedRecipe class="form-control"></v-select>
                 <div v-if="selectedRecipe">
                     <RecipeInfo :recipe="selectedRecipe"></RecipeInfo>
-                    <CommentForm location="recipes/" :id="selectedRecipe.value.id"></CommentForm>
+                    <CommentBundle location="recipes/" :id="selectedRecipe.value._id"/>
                 </div>
                 <br/>
             </div>
@@ -57,18 +57,18 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
     import {validationMixin} from "vuelidate"
     import {required} from "vuelidate/lib/validators"
     import RecipeInfo from "../sub/RecipeInfo";
-    import CommentForm from "../sub/CommentForm";
+    import CommentBundle from "../sub/CommentBundle";
 
     export default {
         name: 'ShopList',
-        components: {CommentForm, RecipeInfo, CenteredLayout},
+        components: {CommentBundle, RecipeInfo, CenteredLayout},
         data() {
             return {
                 recipes: [],
                 selectedRecipe: null,
                 createdRecipe: "",
                 errorMessage: "",
-                location: false
+                location: false,
             }
         },
         mounted() {

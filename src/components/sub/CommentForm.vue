@@ -35,6 +35,7 @@
         methods : {
             onSubmitComment(evt) {
                 evt.preventDefault();
+                console.log(this.$props.id);
                 fetch(this.JAFA_SERVER + this.$props.location + this.$props.id + '/comment',
                     {
                         method: 'POST',
@@ -48,6 +49,7 @@
                     .catch((error) => console.log(error))
                     .then(() => {
                         this.comment = "";
+                        this.$emit("newComment");
                     });
             },
         },

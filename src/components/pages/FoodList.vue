@@ -34,7 +34,12 @@
                     </b-row>
                 </b-form>
                 <br/>
+                <div v-if="foodList">
                 <FoodItems :food-list="foodList"/>
+                </div>
+                <div class="text-center" v-else>
+                    <font-awesome-icon icon="spinner" size="5x" spin/>
+                </div>
                 <br/>
                 <b-pagination-nav base-url="#/foodlist/" :number-of-pages="nbPages" v-model="currentPage"/>
             </centered-layout>
@@ -52,7 +57,7 @@
         components: {FoodItems, CenteredLayout},
         data() {
             return {
-                foodList: [],
+                foodList: null,
                 currentPage: 1,
                 sorting: "desc",
                 searchQuery: "",
@@ -122,6 +127,10 @@
 <style scoped>
     .full-width {
         width: 100%;
+    }
+
+    .center {
+        margin: auto;
     }
 
     .button-form {

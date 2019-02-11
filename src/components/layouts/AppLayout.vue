@@ -62,6 +62,10 @@
         color: inherit;
     }
 
+    .navbar-brand>h2 {
+        margin-top: 10px !important;
+    }
+
     #footer-space {
         height: 135px;
     }
