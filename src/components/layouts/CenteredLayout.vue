@@ -11,3 +11,9 @@
         name: "CenteredLayout"
     }
 </script>
+
+<style scoped>
+    .row {
+        margin: 0 !important;
+    }
+    </style>

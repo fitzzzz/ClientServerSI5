@@ -1,7 +1,7 @@
 <template>
     <centered-layout>
         <FoodInfo :food="food"></FoodInfo>
-        <comment-list  :id="this.$route.params.id" location="foods/"></comment-list>
+        <comment-list :id="this.$route.params.id" location="foods/"></comment-list>
     </centered-layout>
 </template>
 

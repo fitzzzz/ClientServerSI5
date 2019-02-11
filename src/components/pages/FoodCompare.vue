@@ -12,7 +12,8 @@
                         <b-col @sm=comparisonWidth class="mb-4">
                             <food-select @selected="updateBaseSelect"/>
                             <food-info v-if="baseSelect!=null&&!comparisonToggle" :food="baseSelect.value"/>
-                            <comment-list :id="baseSelect.value.id" v-if="baseSelect!=null" location="foods/"></comment-list>
+                            <comment-bundle :id="baseSelect.value.id" v-if="baseSelect!=null" location="foods/"></comment-bundle>
+                            <!--<comment-list :id="baseSelect.value.id" v-if="baseSelect!=null" location="foods/"></comment-list>-->
                             <MinimalFoodInfo v-else-if="baseSelect!=null" :selection="baseSelect"/>
                         </b-col>
                         <b-col sm="6" v-if="comparisonToggle">
@@ -33,10 +34,11 @@
     import Comparison from "../sub/Comparison";
     import MinimalFoodInfo from "../sub/MinimalFoodInfo";
     import CommentList from "../sub/CommentList";
+    import CommentBundle from "../sub/CommentBundle";
 
     export default {
         name: 'CompareFood',
-        components: {CommentList, MinimalFoodInfo, Comparison, FoodInfo, FoodSelect},
+        components: {CommentBundle, CommentList, MinimalFoodInfo, Comparison, FoodInfo, FoodSelect},
         data() {
             return {
                 comparisonToggle: false,
