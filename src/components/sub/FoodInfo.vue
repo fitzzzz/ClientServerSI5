@@ -1,5 +1,5 @@
 <template>
-    <div v-if="food.ingredients.length > 0" class="food-info-container">
+    <div v-if=" food.ingredients && food.ingredients.length > 0" class="food-info-container">
         <h2>{{food.name}}</h2>
 
         <div class="food-header col-xs-12 col-lg-12">
@@ -11,17 +11,26 @@
             </div>
 
             <div class="img-container col-xs-12 col-lg-5">
-                <img :src="getImgURL(food.id, food.images)" width="50%" height="50%" alt="No Image Found"/>
+                <img :src="getImgURL(food.id, food.images)" alt="No Image Found"/>
             </div>
 
         </div>
 
     </div>
 
-    <div v-else class="no-information food-info-container">
-        <img :src="getRandomIcon()" width="50%" height="50%" alt="No Ingredient Found"/>
-        <div class="row no-info-message">
-            <p class="lead">Whoopsie ! <br/>We have no information about that product...</p>
+    <div v-else>
+        <div v-if="food.images && food.images.length > 0" class="no-information">
+            <h2>{{food.name}}</h2>
+            <img :src="getImgURL(food.id, food.images)" alt="No Image Found"/>
+            <div class="row no-info-message">
+                <p class="lead">Whoopsie ! <br/>Nous n'avons aucune information concernant ce produit...</p>
+            </div>
+        </div>
+        <div v-else class="no-information">
+            <img :src="getRandomIcon()"  alt="No Ingredient Found"/>
+            <div class="row no-info-message">
+                <p class="lead">Whoopsie ! <br/>Nous n'avons aucune information concernant ce produit...</p>
+            </div>
         </div>
     </div>
 </template>
@@ -94,7 +103,10 @@
             getIngredientList(ingredients) {
                 return getFormattedIngredientText(ingredients);
             },
-        }
+        },
+        mounted() {
+            console.log(this.$props);
+        },
     }
 </script>
 
@@ -112,6 +124,7 @@
         flex-direction: row;
         align-items: center;
         flex-wrap: wrap-reverse;
+        justify-content: space-between;
     }
 
     h2 {
@@ -138,6 +151,11 @@
         margin-top: 30px;
     }
 
+    .no-information > img {
+        width: 50%;
+        height: 50%;
+    }
+
     .no-info-message {
         margin-top: 20px;
     }
@@ -147,8 +165,8 @@
         justify-content: center;
     }
 
-    .img-container>img {
-        height: auto;
+    .img-container > img {
+        height: 300px;
         width: auto;
     }
 
