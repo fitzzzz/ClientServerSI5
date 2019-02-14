@@ -81,6 +81,7 @@
                             this.loggedinUsername = data.username;
                             this.$root.$emit('bv::hide::modal', 'loginModal');
                             this.$emit('login', true);
+                            router.replace({ path: '/' })
                         }
                     });
             },

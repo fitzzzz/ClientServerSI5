@@ -49,10 +49,10 @@
                 return this.score2 > this.score1 ? "success" : "danger";
             },
             price1color: function () {
-                return this.price1 >= this.price2 ? "success" : "danger";
+                return this.price1 >= this.price2 ? "danger" : "success";
             },
             price2color: function () {
-                return this.price2 > this.price1 ? "success" : "danger";
+                return this.price2 > this.price1 ? "danger" : "success";
             }
         },
         watch: {

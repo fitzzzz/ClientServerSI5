@@ -18,25 +18,26 @@
             </div>
             <div v-if="location">
                 <h2>Add recipe</h2>
-                <b-form @submit="onSubmitRecipe">
-                    <b-form-group>
-                        <b-form-textarea id="recipe-input"
-                                         v-model="createdRecipe"
-                                         placeholder="Enter a recipe"
-                                         :rows="8"
-                                         :state="!$v.createdRecipe.$invalid"
-                                         :max-rows="12">
-                        </b-form-textarea>
-                        <b-form-invalid-feedback>
-                            {{errorMessage}}
-                        </b-form-invalid-feedback>
-                    </b-form-group>
-                    <b-btn id="create-recipe" type="submit" variant="outline-warning" class="float-right"
-                           :disabled="$v.createdRecipe.$invalid">
-                        Add
-                    </b-btn>
-                    <b-popover target="recipe-input" placement="bottomright" triggers="hover" title="Formatting recipe" content=
-                            "A Recipe must have a name, a list of ingredients with quantities and a description, example :
+                <login-wrapper>
+                    <b-form @submit="onSubmitRecipe">
+                        <b-form-group>
+                            <b-form-textarea id="recipe-input"
+                                             v-model="createdRecipe"
+                                             placeholder="Enter a recipe"
+                                             :rows="8"
+                                             :state="!$v.createdRecipe.$invalid"
+                                             :max-rows="12">
+                            </b-form-textarea>
+                            <b-form-invalid-feedback>
+                                {{errorMessage}}
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                        <b-btn id="create-recipe" type="submit" variant="outline-warning" class="float-right"
+                               :disabled="$v.createdRecipe.$invalid">
+                            Add
+                        </b-btn>
+                        <b-popover target="recipe-input" placement="bottomright" triggers="hover" title="Formatting recipe" content=
+                                "A Recipe must have a name, a list of ingredients with quantities and a description, example :
 
 Pizza recipe
 
@@ -45,8 +46,12 @@ Pizza recipe
 - cheese / 100g
 
 Start by putting down the dough, add the tomato sauce and cheese on top and put on the oven for 15 min at 200°">
-                    </b-popover>
-                </b-form>
+                        </b-popover>
+                    </b-form>
+                    <template slot="notconnected">
+                        <h6>You need to be connected to access this feature</h6>
+                    </template>
+                </login-wrapper>
             </div>
         </centered-layout>
     </b-container>
@@ -58,14 +63,15 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
     import {required} from "vuelidate/lib/validators"
     import RecipeInfo from "../sub/RecipeInfo";
     import CommentBundle from "../sub/CommentBundle";
+    import LoginWrapper from "../layouts/LoginWrapper";
 
     export default {
         name: 'ShopList',
-        components: {CommentBundle, RecipeInfo, CenteredLayout},
+        components: {LoginWrapper, CommentBundle, RecipeInfo, CenteredLayout},
         data() {
             return {
                 recipes: [],
-                selectedRecipe: null,
+                selectedShop: null,
                 createdRecipe: "",
                 errorMessage: "",
                 location: false,

@@ -11,9 +11,10 @@
                     <b-row>
                         <b-col @sm=comparisonWidth class="mb-4">
                             <food-select @selected="updateBaseSelect"/>
-                            <food-info v-if="baseSelect!=null&&!comparisonToggle" :food="baseSelect.value"/>
-                            <comment-bundle :id="baseSelect.value.id" v-if="baseSelect!=null" location="foods/"></comment-bundle>
-                            <!--<comment-list :id="baseSelect.value.id" v-if="baseSelect!=null" location="foods/"></comment-list>-->
+                            <div v-if="baseSelect!=null&&!comparisonToggle">
+                                <food-info v-if="baseSelect!=null&&!comparisonToggle" :food="baseSelect.value"/>
+                                <comment-bundle :id="baseSelect.value.id" v-if="baseSelect!=null" location="foods/"></comment-bundle>
+                            </div>
                             <MinimalFoodInfo v-else-if="baseSelect!=null" :selection="baseSelect"/>
                         </b-col>
                         <b-col sm="6" v-if="comparisonToggle">

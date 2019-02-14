@@ -29,13 +29,12 @@
                                     <font-awesome-icon icon="angle-down" size="2x" :transform="buttonIcon"/>
                                 </b-btn>
                             </div>
-
                         </b-col>
                     </b-row>
                 </b-form>
                 <br/>
                 <div v-if="foodList">
-                <FoodItems :food-list="foodList"/>
+                    <FoodItems :food-list="foodList"/>
                 </div>
                 <div class="text-center" v-else>
                     <font-awesome-icon icon="spinner" size="5x" spin/>
