@@ -21,9 +21,6 @@
                 router.replace({path: '/foods/' + id, component: Food})
             }
         },
-        mounted() {
-            console.log("BLEH");
-        }
     }
 </script>
 

@@ -23,13 +23,13 @@
             <h2>{{food.name}}</h2>
             <img :src="getImgURL(food.id, food.images)" alt="No Image Found"/>
             <div class="row no-info-message">
-                <p class="lead">Whoopsie ! <br/>Nous n'avons aucune information concernant ce produit...</p>
+                <p class="lead">Whoopsie ! <br/>We have no data for this product...</p>
             </div>
         </div>
         <div v-else class="no-information">
-            <img :src="getRandomIcon()"  alt="No Ingredient Found"/>
+            <img :src="getRandomIcon()" alt="No Ingredient Found"/>
             <div class="row no-info-message">
-                <p class="lead">Whoopsie ! <br/>Nous n'avons aucune information concernant ce produit...</p>
+                <p class="lead">Whoopsie ! <br/>We have no data for this product...</p>
             </div>
         </div>
     </div>

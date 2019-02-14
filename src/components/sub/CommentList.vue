@@ -1,6 +1,6 @@
 <template>
     <div v-if="comments && comments.length > 0">
-        <h4>Commentaires</h4>
+        <h4>Comments</h4>
         <section class="comments">
             <div v-for="comment of comments">
                 <article class="comment">
@@ -8,7 +8,7 @@
                         <div class="text">
                             <p>{{comment.message}}</p>
                         </div>
-                        <p class="attribution">posté par <a href="#non">{{comment.author.username}}</a> le <span>{{comment.author.createdDate | moment}}</span>
+                        <p class="attribution">posted by <a href="#non">{{comment.author.username}}</a> on <span>{{comment.author.createdDate | moment}}</span>
                         </p>
                     </div>
                 </article>
@@ -33,19 +33,25 @@
                 comments: []
             }
         },
-        mounted() {
-            console.log(this.$props);
-            fetch(this.JAFA_SERVER + this.$props.location + this.$props.id + '/comment')
-                .catch((error) => console.error(error))
-                .then((response) => response.json())
-                .then((data) => {
-                    this.comments = data;
-                });
+        watch: {
+            id: function () {
+                this.reloadComments();
+            }
         },
         methods: {
+            reloadComments: function () {
+                fetch(this.JAFA_SERVER + this.$props.location + this.$props.id + '/comment')
+                    .catch((error) => console.error(error))
+                    .then((response) => response.json())
+                    .then((data) => {
+                        this.comments = data;
+                    });
+            },
             moment: function () {
                 return moment();
             }
+        }, mounted() {
+            this.reloadComments();
         },
         filters: {
             moment: function (date) {
@@ -56,7 +62,9 @@
 </script>
 
 <style>
-    article, aside, figure, footer, header, hgroup, menu, nav, section { display: block }
+    article, aside, figure, footer, header, hgroup, menu, nav, section {
+        display: block
+    }
 
     a {
         color: #6d84b4;
@@ -78,7 +86,9 @@
         width: 100%;
     }
 
-    .comment-body { overflow: hidden }
+    .comment-body {
+        overflow: hidden
+    }
 
     .comment .text {
         padding: 10px;
@@ -87,7 +97,9 @@
         background: #fff;
     }
 
-    .comment .text p:last-child { margin: 0 }
+    .comment .text p:last-child {
+        margin: 0
+    }
 
     .comment .attribution {
         margin: 0.5em 0 0;
