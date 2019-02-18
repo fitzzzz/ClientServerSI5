@@ -36,8 +36,9 @@
                                :disabled="$v.createdRecipe.$invalid">
                             Add
                         </b-btn>
-                        <b-popover target="recipe-input" placement="bottomright" triggers="hover" title="Formatting recipe" content=
-                                "A Recipe must have a name, a list of ingredients with quantities and a description, example :
+                        <b-popover target="recipe-input" placement="bottomright" triggers="hover"
+                                   title="Formatting recipe" content=
+                                           "A Recipe must have a name, a list of ingredients with quantities and a description, example :
 
 Pizza recipe
 
@@ -51,6 +52,13 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
                     <template slot="notconnected">
                         <h6>You need to be connected to access this feature</h6>
                     </template>
+                    <div v-if="recipeInfo">
+                        <br/><br/><br/>
+                        <h3>Choisissez les composants les plus adaptés</h3>
+                        <ingredient-chooser v-for="(ingredients,index) in recipeInfo.suggestions"
+                                            :key="index" :ingredients="ingredients" :id="index">
+                        </ingredient-chooser>
+                    </div>
                 </login-wrapper>
             </div>
         </centered-layout>
@@ -64,17 +72,19 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
     import RecipeInfo from "../sub/RecipeInfo";
     import CommentBundle from "../sub/CommentBundle";
     import LoginWrapper from "../layouts/LoginWrapper";
+    import IngredientChooser from "../sub/ingredientChooser";
 
     export default {
         name: 'ShopList',
-        components: {LoginWrapper, CommentBundle, RecipeInfo, CenteredLayout},
+        components: {IngredientChooser, LoginWrapper, CommentBundle, RecipeInfo, CenteredLayout},
         data() {
             return {
                 recipes: [],
-                selectedShop: null,
+                selectedRecipe: null,
                 createdRecipe: "",
                 errorMessage: "",
                 location: false,
+                recipeInfo: null,
             }
         },
         mounted() {
@@ -104,6 +114,8 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
                     .then((response) => response.json())
                     .then((data) => {
                         console.log(data);
+                        this.createdRecipe = null;
+                        this.recipeInfo = data;
                     });
             },
             recipeNavigation(location) {

@@ -25,14 +25,14 @@
         data() {
             return {
                 shops: [],
-                selectedShop: null,
+                selectedRecipe: null,
                 currentPage: 1,
                 nbPages: 1,
                 shopFoodList: []
             }
         },
         watch: {
-          selectedShop: function() {
+          selectedRecipe: function() {
               this.getFoodListOfShop().then(foodList => this.shopFoodList = foodList);
           }
         },
@@ -42,7 +42,7 @@
                 let params = {
                     order: "desc",
                     criteria: "price",
-                    shop: this.selectedShop.value._id,
+                    shop: this.selectedRecipe.value._id,
                     page: this.currentPage,
                 };
                 url.search = new URLSearchParams(params);
