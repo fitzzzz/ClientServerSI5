@@ -1,5 +1,6 @@
 <template>
-    <b-form-select v-model="selected" :options="options" class="mb-3"/>
+    <b-form-select v-if="options.length > 0" v-model="selected" :options="options" class="mb-3"/>
+    <div v-else><p>Pas de propositions pour l'ingrédient n° {{this.$props.id + 1}} </p><br/></div>
 </template>
 
 <script>
@@ -14,20 +15,17 @@
         },
         watch: {
             selected() {
-                console.log("BAAAH");
+                console.log(this.$props.id);
                 this.$emit("selection", this.$props.id, this.selected);
             }
         },
         mounted() {
             this.options = this.$props.ingredients.map((ingredient) => {
                 return {
-                    value: ingredient.id,
+                    value: ingredient,
                     text: ingredient.name,
-                    ingredient: ingredient
                 }
             });
-            console.log(this.options);
-            console.log(this.$props.id);
         }
     }
 </script>
