@@ -5,14 +5,14 @@
                 <h2>List some food</h2>
                 <b-form inline>
                     <b-row class="full-width">
-                        <b-col md="4" class="mb-2">
+                        <b-col md="3" class="mb-2">
                             <div>
                                 <p>Filter by name</p>
                                 <b-input class="full-width" @input="refreshList" v-model="searchQuery"
                                          placeholder="Filter"/>
                             </div>
                         </b-col>
-                        <b-col md="4" class="mb-2">
+                        <b-col md="3" class="mb-2">
                             <div>
                                 <p>Order by</p>
                                 <b-form-select class="full-width" @select="refreshList" v-model="sortingCriteria">
@@ -21,7 +21,15 @@
                                 </b-form-select>
                             </div>
                         </b-col>
-                        <b-col md="4" class="mb-2">
+                        <b-col md="3" class="mb-2">
+                            <div>
+                                <p>Region</p>
+                                <b-form-select class="full-width" @select="refreshList" v-model="region"
+                                               :options="regions">
+                                </b-form-select>
+                            </div>
+                        </b-col>
+                        <b-col md="3" class="mb-2">
                             <div>
                                 <p>In order</p>
                                 <b-btn class="button-form" variant="outline-secondary" size="sm"
@@ -61,6 +69,7 @@
                 sorting: "desc",
                 searchQuery: "",
                 sortingCriteria: "score",
+                region: "",
                 nbPages: 1
             }
         },
@@ -83,6 +92,9 @@
             },
             sortingCriteria: function () {
                 this.refreshList();
+            },
+            region: function () {
+                this.refreshList();
             }
         },
         methods: {
@@ -95,7 +107,8 @@
                     name: this.searchQuery,
                     order: this.sorting,
                     criteria: this.sortingCriteria,
-                    page: this.currentPage
+                    page: this.currentPage,
+                    region: this.region
                 };
                 url.search = new URLSearchParams(params);
                 fetch(url)
@@ -117,6 +130,18 @@
             }, 200)
         },
         mounted() {
+            fetch(this.JAFA_SERVER + 'regions')
+                .catch((error) => console.log(error))
+                .then((response) => response.json())
+                .then((data) => {
+                    this.regions = data.map((region) => {
+                        return {
+                            value: region,
+                            text: region,
+                        }
+                    });
+                    this.regions.push({value: "", text: "Any"})
+                });
             this.refreshList();
         }
     }
