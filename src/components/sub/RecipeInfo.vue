@@ -1,28 +1,34 @@
 <template>
     <div class="recipe-container">
-        <p>{{recipe}}</p>
         <div class="col-xs-12">
             <div class="col-xs-12 col-md-l2 row recipe-header">
                 <h2>{{recipe.value.title}}</h2>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-4">
+            <b-row>
+                <b-col lg="6" xs="12">
                     <div class="ingredient-header">
                         <h4>Ingredients</h4>
                     </div>
                     <div class="ingredient-list">
-                        <div v-for="ingredient of recipe.value.ingredients">
-                            <div v-if="ingredient.foodId != null" class="col-xs-12">
-                                <FoodInfoCard :id="ingredient.foodId"></FoodInfoCard>
-                            </div>
-                            <div v-else class="ingredient-item">
-                               - {{ingredient.name}}, {{ingredient.quantity}}{{ingredient.unit}}
-                            </div>
+                        <div v-for="ingredient of recipe.value.ingredients" class="ingredient-item">
+                            {{ingredient.name}}, {{ingredient.quantity}}{{ingredient.unit}}
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-md-10 col-lg-8 recipe-text">
+                </b-col>
+                <b-col xs="12" lg="6" class="recipe-text">
+                    <div class="ingredient-header">
+                        <h4>Instructions</h4>
+                    </div>
                     <p>{{recipe.value.text}}</p>
+                </b-col>
+            </b-row>
+            <br/><br/>
+            <div class="ingredient-header">
+                <h4>Shop basket</h4>
+            </div>
+            <div class="ingredient-list">
+                <div v-if="ingredient.foodId != null" v-for="ingredient of recipe.value.ingredients">
+                    <FoodInfoCard :id="ingredient.foodId"></FoodInfoCard>
                 </div>
             </div>
 
@@ -71,7 +77,4 @@
         font-weight: 600;
     }
 
-    .recipe-text {
-        margin-top: 53px;
-    }
 </style>

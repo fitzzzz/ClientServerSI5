@@ -25,14 +25,14 @@
         data() {
             return {
                 shops: [],
-                selectedRecipe: null,
+                selectedShop: null,
                 currentPage: 1,
                 nbPages: 1,
                 shopFoodList: []
             }
         },
         watch: {
-          selectedRecipe: function() {
+          selectedShop: function() {
               this.getFoodListOfShop().then(foodList => this.shopFoodList = foodList);
           }
         },
@@ -42,16 +42,18 @@
                 let params = {
                     order: "desc",
                     criteria: "price",
-                    shop: this.selectedRecipe.value._id,
+                    shop: this.selectedShop.value._id,
                     page: this.currentPage,
                 };
                 url.search = new URLSearchParams(params);
+                console.log(url);
                 return await fetch(url)
                     .catch((error) => console.log(error))
                     .then((response) => response.json())
                     .then((data) => {
                         this.nbPages = Math.ceil(data.count / 15);
                         return data.data.map((elem) => {
+                            console.log(elem);
                             return {id: elem.id, name: elem.name, value: elem.price}
                         });
                     });

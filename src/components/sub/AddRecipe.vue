@@ -42,8 +42,11 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
                                     :key="index" :ingredients="ingredients" :id="index"
                                     @selection="updateIngredients">
                 </ingredient-chooser>
-                {{selectedIngredients}}
-                <b-btn @click="submitIngredients">Valider ingrédients</b-btn>
+                <food-info-card v-for="ingredient in selectedIngredients" :key="ingredient.id"
+                                :id="ingredient.id"></food-info-card>
+                <b-btn type="submit" variant="outline-warning" class="float-right" @click="submitIngredients">
+                    Valider ingrédients
+                </b-btn>
             </div>
         </login-wrapper>
     </div>
@@ -53,10 +56,11 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
     import LoginWrapper from "../layouts/LoginWrapper"
     import {validationMixin} from "vuelidate"
     import {required} from "vuelidate/lib/validators"
+    import FoodInfoCard from "../composite/FoodInfoCard";
 
     export default {
         name: 'AddRecipe',
-        components: {IngredientChooser, LoginWrapper},
+        components: {FoodInfoCard, IngredientChooser, LoginWrapper},
         data() {
             return {
                 createdRecipe: "",

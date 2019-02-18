@@ -1,19 +1,11 @@
 <template>
-    <div class="food-info-card my-3">
-        <b-card no-body class="overflow-hidden">
-            <b-row no-gutters>
-                <b-col md="6">
-                    <b-card-img :src="getImgURL(food.id, food.images)" alt="No Image Found" class="rounded-0 img-card"/>
-                </b-col>
-                <b-col md="6">
-                    <b-card-body :title="food.name">
-                        <b-card-text>
-                            <p>{{getFormattedFloat(food.score)}}</p>
-                            <p>{{getFormattedFloat(food.price)}}€</p>
-                        </b-card-text>
-                    </b-card-body>
-                </b-col>
-            </b-row>
+    <div>
+        <b-card v-if="food!=null"  :img-src="getImgURL(food.id, food.images)" img-alt="pouet" img-left class="mb-3">
+            <b-card-text>
+                <h5>{{food.name}}</h5>
+                <p>Global Score : {{getFormattedFloat(food.score)}}</p>
+                <p>Global Price : {{getFormattedFloat(food.price)}}€</p>
+            </b-card-text>
         </b-card>
     </div>
 
@@ -41,7 +33,7 @@
             getImgURL(id, images) {
                 return 'https://static.openfoodfacts.org/images/products/' + getFormattedId(id, images);
             },
-            getFormattedFloat(float){
+            getFormattedFloat(float) {
                 return parseFloat(float).toFixed(2);
             },
         }
@@ -75,12 +67,13 @@
 </script>
 
 <style scoped>
-    .food-info-card{
-        font-size: 10px;
-        height: 80px;
+
+    .card-img-left {
+        max-height: 150px;
+        margin: 0;
     }
 
-    h4{
+    h4 {
         font-size: 12px;
     }
 
