@@ -43,6 +43,7 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
                                     @selection="updateIngredients">
                 </ingredient-chooser>
                 {{selectedIngredients}}
+                <b-btn @click="submitIngredients">Valider ingrédients</b-btn>
             </div>
         </login-wrapper>
     </div>
@@ -88,6 +89,28 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
             updateIngredients(id, ingredient) {
                 this.selectedIngredients[id] = ingredient;
                 this.selectedIngredients = Object.assign({}, this.selectedIngredients);
+            },
+            submitIngredients() {
+                console.log(this.recipeInfo);
+                for (let key in this.selectedIngredients) {
+                    console.log(key);
+                    console.log(this.selectedIngredients[key]);
+                    fetch(this.JAFA_SERVER + 'recipes/' + this.recipeInfo.recipe._id + '/ingredients',
+                        {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                foodId: this.selectedIngredients[key].id,
+                                position: key
+                            }), headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": this.AUTHORIZATION
+                            }
+                        })
+                        .catch((error) => console.log(error))
+                        .then(() => {
+                            this.recipeInfo = null;
+                        });
+                }
             }
         },
         mixins: [
@@ -96,37 +119,39 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
         validations: {
             createdRecipe: {
                 required,
-                recipeValidator: function (recipeText) {
-                    recipeText = recipeText.trim();
-                    const lines = recipeText.split("\n");
-                    if (lines === null || lines.length < 3) {
-                        this.errorMessage = "No Recipe Title or ingredients description";
-                        return false;
-                    }
-                    let ingredientLines = lines.filter(line => line.startsWith("-"));
-                    if (ingredientLines.length === 0) {
-                        this.errorMessage = "There must be ingredients lines which start with -";
-                        return false;
-                    }
-                    for (let line of ingredientLines) {
-                        const sp = line.split("/");
-                        if (sp.length <= 1) {
-                            this.errorMessage = "Ingredients must have a quantity specified after a /";
+                recipeValidator:
+
+                    function (recipeText) {
+                        recipeText = recipeText.trim();
+                        const lines = recipeText.split("\n");
+                        if (lines === null || lines.length < 3) {
+                            this.errorMessage = "No Recipe Title or ingredients description";
                             return false;
                         }
-                        let quantityMatches = sp[1].match("[0-9]+");
-                        if (quantityMatches === null) {
-                            this.errorMessage = "Ingredient quantity must be a numeral";
+                        let ingredientLines = lines.filter(line => line.startsWith("-"));
+                        if (ingredientLines.length === 0) {
+                            this.errorMessage = "There must be ingredients lines which start with -";
                             return false;
                         }
+                        for (let line of ingredientLines) {
+                            const sp = line.split("/");
+                            if (sp.length <= 1) {
+                                this.errorMessage = "Ingredients must have a quantity specified after a /";
+                                return false;
+                            }
+                            let quantityMatches = sp[1].match("[0-9]+");
+                            if (quantityMatches === null) {
+                                this.errorMessage = "Ingredient quantity must be a numeral";
+                                return false;
+                            }
+                        }
+                        let realLines = lines.filter(line => line.length > 0);
+                        if (realLines.pop().startsWith("-")) {
+                            this.errorMessage = "There must be a step list/description at the end of the recipe";
+                            return false;
+                        }
+                        return true;
                     }
-                    let realLines = lines.filter(line => line.length > 0);
-                    if (realLines.pop().startsWith("-")) {
-                        this.errorMessage = "There must be a step list/description at the end of the recipe";
-                        return false;
-                    }
-                    return true;
-                }
             }
         }
     }
