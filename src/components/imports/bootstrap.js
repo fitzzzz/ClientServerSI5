@@ -31,6 +31,10 @@ import bBadge from 'bootstrap-vue/es/components/badge/badge';
 import bFormTextarea from 'bootstrap-vue/es/components/form-textarea/form-textarea';
 import bPopover from 'bootstrap-vue/es/components/popover/popover';
 import bNav from 'bootstrap-vue/es/components/nav/nav';
+import bCard from 'bootstrap-vue/es/components/card/card';
+import bCardBody from 'bootstrap-vue/es/components/card/card-body';
+import bCardImg from 'bootstrap-vue/es/components/card/card-img';
+import bCardText from 'bootstrap-vue/es/components/card/card-text';
 
 Vue.component('b-nav', bNav);
 Vue.component('b-popover', bPopover);
@@ -63,5 +67,9 @@ Vue.component('b-progress', bProgress);
 Vue.component('b-nav-item-dropdown', bNavItemDropdown);
 Vue.component('b-dropdown-item', bDropdownItem);
 Vue.component('b-dropdown', bDropdown);
+Vue.component('b-card', bCard);
+Vue.component('b-card-body', bCardBody);
+Vue.component('b-card-img', bCardImg);
+Vue.component('b-card-text', bCardText);
 
 Vue.directive('b-modal', vBModal);
