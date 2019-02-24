@@ -48,9 +48,12 @@
 
     function getFormattedId(id, images) {
         let rev = -1;
+        let name;
+
         for (let i = 0; i < images.length; ++i) {
-            if (images[i].name === 'front_fr') {
-                rev = images[i].rev
+            if (images[i].name === "front_fr" || images[i].name === "front_en") {
+                rev = images[i].rev;
+                name = images[i].name;
             }
         }
         let formattedId = id.split('');
@@ -67,7 +70,13 @@
         } else {
             formattedId = id.toString();
         }
-        return formattedId + '/front_fr.' + rev + '.400.jpg'
+
+        if (name == null) {
+            name = "front_fr";
+        }
+
+
+        return formattedId + '/' + name + '.' + rev + '.400.jpg'
     }
 
     function getFormattedIngredientText(ingredients) {
