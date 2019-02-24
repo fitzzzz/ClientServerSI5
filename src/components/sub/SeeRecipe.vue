@@ -25,7 +25,7 @@
         },
         mounted() {
             fetch(this.JAFA_SERVER + "recipes")
-                .catch((error) => console.log(error))
+                .catch((error) => console.error(error))
                 .then((response) => response.json())
                 .then((data) => {
                     this.recipes = data.data.map((elem) => {

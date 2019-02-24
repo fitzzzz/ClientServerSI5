@@ -55,7 +55,7 @@
             updateSelection(val) {
                 this.selection = val;
                 fetch(this.JAFA_SERVER + 'foods/' + val.value.id + '/score')
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then((response) => response.json())
                     .then((data) => {
                         this.totalScore = parseFloat(data.score).toFixed(2);
@@ -73,7 +73,7 @@
                             "Authorization": this.AUTHORIZATION
                         }
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then(() => {
                         this.updateSelection(this.selection);
                         this.score = null;

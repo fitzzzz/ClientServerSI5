@@ -1,14 +1,27 @@
+
 # Client side of JAFA for the Programmable Web course
 
-## Server side : https://github.com/Sriki13/jafa-server
+## Client deployment address on Heroku
 
-# Library used :
+https://jafa-polytech.herokuapp.com
+(can take up to 30 seconds to start)
+
+## Server deployment address on Heroku
+
+https://jafa-server.herokuapp.com
+(can also take up to 30 seconds to start)
+
+## Server code base address
+
+https://github.com/Sriki13/jafa-server
+
+# Libraries used :
 
 ## Main
 * [Express](https://expressjs.com/fr/) for Heroku Deployment
 * [VueJS](https://vuejs.org/) for main frontend devlopment
 * [BootstrapVue](https://bootstrap-vue.js.org/) as a style framework
-* [Bootswatch](https://bootswatch.com/) to enhance the bootstrap theme 
+* [Bootswatch](https://bootswatch.com/) to enhance the bootstrap theme
 
 ## Secondary
 

@@ -15,7 +15,6 @@
         },
         watch: {
             selected() {
-                console.log(this.$props.id);
                 this.$emit("selection", this.$props.id, this.selected);
             }
         },

@@ -35,7 +35,6 @@
         methods : {
             onSubmitComment(evt) {
                 evt.preventDefault();
-                console.log(this.$props.id);
                 fetch(this.JAFA_SERVER + this.$props.location + this.$props.id + '/comment',
                     {
                         method: 'POST',
@@ -46,7 +45,7 @@
                             "Authorization": this.AUTHORIZATION
                         }
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then(() => {
                         this.comment = "";
                         this.$emit("newComment");

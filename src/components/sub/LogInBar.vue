@@ -66,7 +66,7 @@
                             password: this.password
                         }), headers: {"Content-Type": "application/json"}
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.message != null) {

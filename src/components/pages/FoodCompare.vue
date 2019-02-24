@@ -15,11 +15,15 @@
                                 <food-info v-if="baseSelect!=null&&!comparisonToggle" :food="baseSelect.value"/>
                                 <comment-bundle :id="baseSelect.value.id" v-if="baseSelect!=null" location="foods/"></comment-bundle>
                             </div>
-                            <MinimalFoodInfo v-else-if="baseSelect!=null" :selection="baseSelect"/>
+                            <div v-else-if="baseSelect!=null" >
+                                <br/>
+                                <FoodInfoCard :id="baseSelect.value.id"/>
+                            </div>
                         </b-col>
                         <b-col sm="6" v-if="comparisonToggle">
                             <food-select @selected="updateComparisonSelect"/>
-                            <MinimalFoodInfo v-if="comparisonSelect!=null" :selection="comparisonSelect"/>
+                            <br/>
+                            <FoodInfoCard v-if="comparisonSelect!=null" :id="comparisonSelect.value.id"/>
                         </b-col>
                     </b-row>
                     <div class="separator"></div>
@@ -36,10 +40,11 @@
     import MinimalFoodInfo from "../sub/MinimalFoodInfo";
     import CommentList from "../sub/CommentList";
     import CommentBundle from "../sub/CommentBundle";
+    import FoodInfoCard from "../composite/FoodInfoCard";
 
     export default {
         name: 'CompareFood',
-        components: {CommentBundle, CommentList, MinimalFoodInfo, Comparison, FoodInfo, FoodSelect},
+        components: {FoodInfoCard, CommentBundle, CommentList, MinimalFoodInfo, Comparison, FoodInfo, FoodSelect},
         data() {
             return {
                 comparisonToggle: false,

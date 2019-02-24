@@ -32,9 +32,12 @@
             }
         },
         watch: {
-          selectedShop: function() {
-              this.getFoodListOfShop().then(foodList => this.shopFoodList = foodList);
-          }
+            selectedShop: function () {
+                this.getFoodListOfShop().then(foodList => this.shopFoodList = foodList);
+            },
+            currentPage: function () {
+                this.getFoodListOfShop().then(foodList => this.shopFoodList = foodList);
+            }
         },
         methods: {
             async getFoodListOfShop() {
@@ -46,14 +49,12 @@
                     page: this.currentPage,
                 };
                 url.search = new URLSearchParams(params);
-                console.log(url);
                 return await fetch(url)
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then((response) => response.json())
                     .then((data) => {
                         this.nbPages = Math.ceil(data.count / 15);
                         return data.data.map((elem) => {
-                            console.log(elem);
                             return {id: elem.id, name: elem.name, value: elem.price}
                         });
                     });
@@ -61,7 +62,7 @@
         },
         mounted() {
             fetch(this.JAFA_SERVER + "stores")
-                .catch((error) => console.log(error))
+                .catch((error) => console.error(error))
                 .then((response) => response.json())
                 .then((data) => {
                     this.shops = data.data.map((elem) => {

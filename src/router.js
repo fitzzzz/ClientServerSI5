@@ -48,6 +48,11 @@ export default new Router({
             component: ShopList
         },
         {
+            path: '/shops/:page',
+            name: 'shoplistpage',
+            component: ShopList
+        },
+        {
             path: '/foods/:id',
             name: 'food',
             component: Food,

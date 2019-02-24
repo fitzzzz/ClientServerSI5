@@ -82,10 +82,9 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
                             "Authorization": this.AUTHORIZATION
                         }
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log(data);
                         this.createdRecipe = null;
                         this.recipeInfo = data;
                     });
@@ -95,10 +94,7 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
                 this.selectedIngredients = Object.assign({}, this.selectedIngredients);
             },
             submitIngredients() {
-                console.log(this.recipeInfo);
                 for (let key in this.selectedIngredients) {
-                    console.log(key);
-                    console.log(this.selectedIngredients[key]);
                     fetch(this.JAFA_SERVER + 'recipes/' + this.recipeInfo.recipe._id + '/ingredients',
                         {
                             method: 'POST',
@@ -110,7 +106,7 @@ Start by putting down the dough, add the tomato sauce and cheese on top and put 
                                 "Authorization": this.AUTHORIZATION
                             }
                         })
-                        .catch((error) => console.log(error))
+                        .catch((error) => console.error(error))
                         .then(() => {
                             this.recipeInfo = null;
                         });

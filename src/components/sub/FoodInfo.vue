@@ -104,9 +104,6 @@
                 return getFormattedIngredientText(ingredients);
             },
         },
-        mounted() {
-            console.log(this.$props);
-        },
     }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card v-if="food!=null"  :img-src="getImgURL(food.id, food.images)" img-alt="pouet" img-left class="mb-3">
+        <b-card v-if="food!=null" :img-src="getImgURL(food.id, food.images)" img-alt="pouet" img-left class="mb-3">
             <b-card-text>
                 <h5>{{food.name}}</h5>
                 <p>Global Score : {{getFormattedFloat(food.score)}}</p>
@@ -21,15 +21,23 @@
                 food: null,
             }
         },
+        watch: {
+            id : function() {
+                this.getFoodInfo()
+            }
+        },
         mounted() {
-            fetch(this.JAFA_SERVER + 'foods/' + this.$props.id)
-                .catch((error) => console.log(error))
-                .then((response) => response.json())
-                .then((data) => {
-                    this.food = data;
-                });
+            this.getFoodInfo();
         },
         methods: {
+            getFoodInfo() {
+                fetch(this.JAFA_SERVER + 'foods/' + this.$props.id)
+                    .catch((error) => console.error(error))
+                    .then((response) => response.json())
+                    .then((data) => {
+                        this.food = data;
+                    });
+            },
             getImgURL(id, images) {
                 return 'https://static.openfoodfacts.org/images/products/' + getFormattedId(id, images);
             },

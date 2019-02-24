@@ -68,7 +68,7 @@
         methods: {
             async getInfoFromFoodId(id, info) {
                 return await fetch(this.JAFA_SERVER + 'foods/' + id + '/' + info)
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then((response) => response.json())
             }
         },

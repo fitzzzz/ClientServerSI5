@@ -32,7 +32,7 @@
             },
             updateDatabase: function (search, vm) {
                 fetch(vm.JAFA_SERVER + 'foods?name=' + search)
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.error(error))
                     .then((response) => response.json())
                     .then((data) => {
                         vm.database = data.data.map((elem) => {
