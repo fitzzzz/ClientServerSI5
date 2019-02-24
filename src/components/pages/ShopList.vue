@@ -4,10 +4,17 @@
             <h2>Access The Shops</h2>
             <v-select placeholder="Search Shop"
                       :options=shops v-model=selectedShop class="form-control"></v-select>
-            <ShopInfo v-if="selectedShop" :shop="selectedShop.value"/>
-            <div v-if="selectedShop">
-                <FoodItems :food-list="shopFoodList"></FoodItems>
-                <b-pagination-nav base-url="#/shops/" :number-of-pages="nbPages" v-model="currentPage"/>
+            <div v-if="selectedShop" class="mx-3">
+                <b-nav justified tabs>
+                    <b-nav-item @click="shopNavigation(false)" :active="!catalog">Practical Informations</b-nav-item>
+                    <b-nav-item @click="shopNavigation(true)" :active="catalog">Catalog</b-nav-item>
+                </b-nav>
+                <br/>
+                <ShopInfo v-if="selectedShop && !catalog" :shop="selectedShop.value"/>
+                <div v-if="selectedShop && catalog">
+                    <FoodItems :food-list="shopFoodList"></FoodItems>
+                    <b-pagination-nav base-url="#/shops/" :number-of-pages="nbPages" v-model="currentPage"/>
+                </div>
             </div>
         </centered-layout>
     </b-container>
@@ -28,7 +35,8 @@
                 selectedShop: null,
                 currentPage: 1,
                 nbPages: 1,
-                shopFoodList: []
+                shopFoodList: [],
+                catalog: false
             }
         },
         watch: {
@@ -58,6 +66,9 @@
                             return {id: elem.id, name: elem.name, value: elem.price}
                         });
                     });
+            },
+            shopNavigation(catalog) {
+                this.catalog = catalog;
             }
         },
         mounted() {
