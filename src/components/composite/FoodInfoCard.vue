@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card v-if="food!=null" :img-src="getImgURL(food.id, food.images)" img-alt="no img found" img-left class="mb-3">
+        <b-card v-if="food!=null" :img-src="getImgURL(food.id, food.images)" img-alt="no img found" img-left class="mb-3" @click="goToFood(food.id)">
             <b-card-text>
                 <h5>{{food.name}}</h5>
                 <p>Global Score : {{getFormattedFloat(food.score)}}</p>
@@ -12,6 +12,9 @@
 </template>
 
 <script>
+    import router from "../../router";
+    import Food from "../pages/Food"
+
 
     export default {
         name: "FoodInfoCard",
@@ -44,6 +47,9 @@
             getFormattedFloat(float) {
                 return parseFloat(float).toFixed(2);
             },
+            goToFood(id) {
+                router.replace({path: '/foods/' + id, component: Food})
+            }
         }
     }
 
