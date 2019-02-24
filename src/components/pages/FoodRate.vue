@@ -7,9 +7,10 @@
                 <div v-if="selection!=null">
                     <br/>
                     <p>Global score : {{totalScore}}</p>
+                    <br/>
                     <b-form @submit="onSubmitScore">
                         <b-form-group
-                                label="Enter your own recipe with:"
+                                label="Enter your own score with:"
                                 label-for="scoreInput">
                             <b-form-input id="scoreInput"
                                           type="number"

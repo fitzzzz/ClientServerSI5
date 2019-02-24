@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card v-if="food!=null" :img-src="getImgURL(food.id, food.images)" img-alt="pouet" img-left class="mb-3">
+        <b-card v-if="food!=null" :img-src="getImgURL(food.id, food.images)" img-alt="no img found" img-left class="mb-3">
             <b-card-text>
                 <h5>{{food.name}}</h5>
                 <p>Global Score : {{getFormattedFloat(food.score)}}</p>
