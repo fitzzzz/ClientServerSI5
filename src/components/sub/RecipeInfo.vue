@@ -26,8 +26,8 @@
             <div class="ingredient-header">
                 <h4>Shop basket</h4>
             </div>
-            <div class="ingredient-list">
-                <div v-if="ingredient.foodId != null" v-for="ingredient of recipe.value.ingredients">
+            <div class="ingredient-list-card">
+                <div v-if="ingredient.foodId != null" v-for="ingredient of recipe.value.ingredients" class="col-lg-6 col-xs-12">
                     <FoodInfoCard :id="ingredient.foodId"></FoodInfoCard>
                 </div>
             </div>
@@ -75,6 +75,12 @@
         content: "-";
         color: black;
         font-weight: 600;
+    }
+
+    .ingredient-list-card{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
 </style>
