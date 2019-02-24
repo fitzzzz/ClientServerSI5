@@ -15,11 +15,16 @@ https://jafa-server.herokuapp.com
 
 https://github.com/Sriki13/jafa-server
 
+## Server api documentation address
+
+https://jafa-server.herokuapp.com/apidoc/
+
 # Libraries used :
 
 ## Main
+
 * [Express](https://expressjs.com/fr/) for Heroku Deployment
-* [VueJS](https://vuejs.org/) for main frontend devlopment
+* [VueJS](https://vuejs.org/) for main frontend development
 * [BootstrapVue](https://bootstrap-vue.js.org/) as a style framework
 * [Bootswatch](https://bootswatch.com/) to enhance the bootstrap theme
 
